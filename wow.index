@@ -1,1 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <title>Flow Client</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #111;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 4rem;
+      margin-bottom: 10px;
+    }
+
+    p {
+      color: #aaa;
+      font-size: 1.2rem;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div>
+    <h1>🚀 Flow Client</h1>
+    <p>flow-client.lol is working!</p>
+  </div>
+
+</body>
+</html>
