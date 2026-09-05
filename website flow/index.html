@@ -1,0 +1,4775 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Flow Client | Next-Gen Minecraft 1.21.11 Fabric Client & DonutSMP Base Finder</title>
+  <meta name="description" content="Flow Client is the premier 1.21.11 Fabric client featuring intelligent Sus Chunk Finder for DonutSMP, undetected anticheat bypasses, and an ultra-modern ClickGUI." />
+  <meta name="keywords" content="Flow Client, Minecraft Client, DonutSMP Base Finder, Sus Chunk Finder, Minecraft 1.21.11, Fabric Client, Undetected Ghost Client, AutoCrystal, AutoTotem" />
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌊</text></svg>" />
+
+  <!-- Google Fonts Preconnect & Stylesheets -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@200;300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+/* === css/main.css === */
+/* ==========================================================================
+   FLOW CLIENT - HIGH PROFESSIONAL MODERN DESIGN SYSTEM
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+:root {
+  /* Color Palette */
+  --bg-primary: #050508;
+  --bg-secondary: #0a0912;
+  --bg-card: rgba(18, 14, 34, 0.7);
+  --bg-card-hover: rgba(28, 22, 50, 0.85);
+  
+  --client-panel-bg: rgba(18, 14, 34, 0.85);
+  --client-red: #DC2626;
+  --client-red-hover: #EF4444;
+  --client-cyan: #38BDF8;
+  --client-donut-blue: #0078FF;
+  --client-emerald: #10B981;
+  --client-amber: #FBBF24;
+  --client-purple: #A855F7;
+
+  --text-main: #F1F5F9;
+  --text-muted: #94A3B8;
+  --text-dim: #64748B;
+  --text-pure-white: #FFFFFF;
+
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-glow: rgba(56, 189, 248, 0.3);
+  
+  --font-heading: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --font-logo: 'Outfit', sans-serif;
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 18px;
+  --radius-xl: 26px;
+  --radius-full: 9999px;
+
+  --shadow-subtle: 0 10px 30px rgba(0, 0, 0, 0.5);
+  --shadow-glow: 0 0 35px rgba(56, 189, 248, 0.18);
+  --shadow-red: 0 0 25px rgba(220, 38, 38, 0.35);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  color-scheme: dark;
+  background-color: var(--bg-primary);
+  font-family: var(--font-body);
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-main);
+  line-height: 1.6;
+  overflow-x: hidden;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Typography Defaults */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  color: var(--text-pure-white);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+p {
+  color: var(--text-muted);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+::-webkit-scrollbar-thumb {
+  background: #1e1933;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #2e264f;
+}
+
+/* Container */
+.flow-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ==========================================================================
+   NAVIGATION BAR
+   ========================================================================== */
+.flow-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  background: rgba(5, 5, 8, 0.75);
+  border-bottom: 1px solid var(--border-subtle);
+  transition: all 0.3s ease;
+}
+
+.nav-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 74px;
+}
+
+.brand-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-text-spaced {
+  font-family: var(--font-heading);
+  font-size: 26px;
+  font-weight: 300;
+  letter-spacing: 0.38em;
+  text-transform: lowercase;
+  color: #FFFFFF;
+  text-shadow: 0 0 16px rgba(255, 255, 255, 0.4);
+  transition: all 0.3s ease;
+}
+
+.brand-logo:hover .logo-text-spaced {
+  letter-spacing: 0.46em;
+  text-shadow: 0 0 24px rgba(255, 255, 255, 0.8);
+}
+
+.logo-version-badge {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  background: rgba(56, 189, 248, 0.12);
+  color: var(--client-cyan);
+  padding: 2px 8px;
+  border-radius: 4px;
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  letter-spacing: 0.05em;
+}
+
+.nav-links-menu {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  list-style: none;
+}
+
+.nav-link {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-muted);
+  transition: color 0.2s ease;
+  position: relative;
+}
+
+.nav-link:hover {
+  color: var(--text-pure-white);
+}
+
+.nav-link.has-glow-dot::after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  right: -8px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--client-cyan);
+  box-shadow: 0 0 6px var(--client-cyan);
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.btn-icon-audio {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-muted);
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.btn-icon-audio:hover {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.btn-icon-audio.is-muted {
+  color: var(--client-red);
+}
+
+.nav-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%);
+  border: 1px solid rgba(99, 102, 241, 0.4);
+  color: #FFFFFF;
+  padding: 8px 18px;
+  border-radius: 8px;
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 14px rgba(49, 46, 129, 0.35);
+}
+
+.nav-btn-primary:hover {
+  border-color: rgba(99, 102, 241, 0.8);
+  box-shadow: 0 6px 20px rgba(99, 102, 241, 0.5);
+  transform: translateY(-1px);
+}
+
+/* ==========================================================================
+   SECTION COMMONS
+   ========================================================================== */
+section {
+  padding: 100px 0;
+  position: relative;
+}
+
+.section-header-center {
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto 60px auto;
+}
+
+.section-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--client-cyan);
+  background: rgba(56, 189, 248, 0.08);
+  border: 1px solid rgba(56, 189, 248, 0.2);
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  margin-bottom: 16px;
+}
+
+.section-tag.tag-donut {
+  color: #38BDF8;
+  background: rgba(0, 120, 255, 0.12);
+  border-color: rgba(0, 120, 255, 0.35);
+}
+
+.section-tag.tag-red {
+  color: #EF4444;
+  background: rgba(239, 68, 68, 0.12);
+  border-color: rgba(239, 68, 68, 0.3);
+}
+
+.section-title {
+  font-size: 42px;
+  line-height: 1.15;
+  margin-bottom: 16px;
+}
+
+.section-desc {
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+/* Gradient Text Accent */
+.gradient-text {
+  background: linear-gradient(135deg, #FFFFFF 0%, #CBD5E1 50%, #94A3B8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gradient-cyan {
+  background: linear-gradient(135deg, #38BDF8 0%, #818CF8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gradient-donut {
+  background: linear-gradient(135deg, #60A5FA 0%, #3B82F6 50%, #1D4ED8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+
+/* === css/clickgui.css === */
+/* ==========================================================================
+   FLOW CLIENT CLICKGUI - PIXEL-PERFECT JAVA GUI REPLICA
+   ========================================================================== */
+
+.clickgui-interactive-section {
+  background: radial-gradient(circle at 50% 30%, rgba(20, 14, 40, 0.4) 0%, rgba(5, 5, 8, 1) 100%);
+  padding-top: 60px;
+  padding-bottom: 80px;
+  overflow: hidden;
+}
+
+.gui-simulator-frame {
+  position: relative;
+  background: #080611;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), 0 0 40px rgba(99, 102, 241, 0.1);
+  overflow: hidden;
+}
+
+.gui-frame-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px;
+  background: rgba(18, 14, 34, 0.95);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.gui-window-controls {
+  display: flex;
+  gap: 8px;
+}
+
+.gui-dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+}
+.gui-dot.dot-red { background: #EF4444; }
+.gui-dot.dot-yellow { background: #FBBF24; }
+.gui-dot.dot-green { background: #10B981; }
+
+.gui-frame-title {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+}
+
+.gui-hint-badge {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  background: rgba(56, 189, 248, 0.1);
+  color: var(--client-cyan);
+  padding: 3px 10px;
+  border-radius: 4px;
+  border: 1px solid rgba(56, 189, 248, 0.25);
+}
+
+/* ==========================================================================
+   WORKSPACE CANVAS & PANELS
+   ========================================================================== */
+.flow-gui-workspace {
+  position: relative;
+  min-height: 640px;
+  height: 700px;
+  background-color: #0c0918;
+  background-image: 
+    radial-gradient(circle at 50% 50%, rgba(30, 20, 60, 0.3) 0%, transparent 80%),
+    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 100% 100%, 32px 32px, 32px 32px;
+  user-select: none;
+  -webkit-user-select: none;
+  overflow: hidden;
+}
+
+/* HUD Overlay Layer */
+.flow-hud-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.flow-hud-watermark {
+  position: absolute;
+  top: 14px;
+  left: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-heading);
+}
+
+.hud-flow-brand {
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  color: #FFFFFF;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+}
+
+.hud-divider {
+  color: rgba(255, 255, 255, 0.2);
+  font-size: 12px;
+}
+
+.hud-stat-badge {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: #94A3B8;
+  background: rgba(18, 14, 34, 0.6);
+  padding: 2px 8px;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.flow-hud-arraylist {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 3px;
+}
+
+.hud-module-entry {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  font-weight: 600;
+  color: hsl(var(--accent-hue), 85%, 65%);
+  text-shadow: 0 0 8px hsla(var(--accent-hue), 85%, 65%, 0.4);
+  background: rgba(18, 14, 34, 0.7);
+  padding: 2px 8px;
+  border-radius: 3px;
+  border-right: 2.5px solid hsl(var(--accent-hue), 85%, 65%);
+  letter-spacing: 0.02em;
+  animation: slideInFromRight 0.25s ease-out;
+}
+
+@keyframes slideInFromRight {
+  from { opacity: 0; transform: translateX(15px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.flow-hud-spotify {
+  position: absolute;
+  bottom: 60px;
+  left: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(18, 14, 34, 0.85);
+  border: 1px solid rgba(29, 185, 84, 0.3);
+  padding: 8px 14px;
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.spotify-art {
+  color: #1DB954;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.spotify-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.spotify-title {
+  font-size: 11px;
+  font-weight: 600;
+  color: #FFFFFF;
+}
+
+.spotify-artist {
+  font-size: 9.5px;
+  color: #94A3B8;
+}
+
+.spotify-progress-bar {
+  width: 110px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  margin-top: 3px;
+  overflow: hidden;
+}
+
+.spotify-progress-fill {
+  width: 45%;
+  height: 100%;
+  background: #1DB954;
+}
+
+/* ==========================================================================
+   CATEGORY PANELS (Exact CategoryPanel.java Match)
+   ========================================================================== */
+.flow-panels-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+}
+
+.flow-category-panel {
+  position: absolute;
+  width: 178px;
+  background: rgba(18, 14, 34, 0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  padding: 4px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+  z-index: 20;
+  transition: box-shadow 0.2s ease;
+}
+
+.flow-category-panel.is-dragging {
+  z-index: 100;
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.8), 0 0 25px rgba(56, 189, 248, 0.25);
+  cursor: grabbing;
+}
+
+.panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 8px;
+  cursor: grab;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  margin-bottom: 4px;
+}
+
+.panel-header:active {
+  cursor: grabbing;
+}
+
+.panel-title {
+  font-family: var(--font-heading);
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: #E2E8F0;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.panel-count {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  color: #64748B;
+  background: rgba(255, 255, 255, 0.04);
+  padding: 1px 5px;
+  border-radius: 3px;
+}
+
+.panel-modules-list {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  max-height: 480px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 1px;
+}
+
+.panel-empty-search {
+  padding: 10px 6px;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: #64748B;
+  background: rgba(24, 19, 42, 0.5);
+  border-radius: 4px;
+}
+
+/* ==========================================================================
+   MODULE BUTTONS (Exact ModuleButton.java Match)
+   ========================================================================== */
+.flow-module-wrapper {
+  display: flex;
+  flex-direction: column;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.flow-module-button {
+  height: 22px;
+  display: flex;
+  align-items: center;
+  padding: 0 7px;
+  border-radius: 4px;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.flow-module-button:hover {
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.flow-module-button.is-enabled {
+  background: #DC2626;
+  box-shadow: 0 2px 8px rgba(220, 38, 38, 0.35);
+}
+
+.flow-module-button.is-enabled:hover {
+  background: #EF4444;
+}
+
+.module-btn-content {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.module-name {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: #9E9EAE;
+}
+
+.flow-module-button:hover .module-name {
+  color: #FFFFFF;
+}
+
+.flow-module-button.is-enabled .module-name {
+  color: #FFFFFF;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.module-expand-indicator {
+  font-size: 9px;
+  color: #64748B;
+  transition: transform 0.2s ease;
+}
+
+.module-expand-indicator.rotated {
+  transform: rotate(90deg);
+  color: #FFFFFF;
+}
+
+/* ==========================================================================
+   SUBSETTINGS DROPDOWN (Right Click Expansion)
+   ========================================================================== */
+.flow-module-dropdown {
+  background: rgba(18, 14, 34, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+  padding: 6px;
+  margin-top: 2px;
+  margin-bottom: 3px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  animation: fadeInDown 0.18s ease-out;
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.setting-row {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.setting-label {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  color: #94A3B8;
+  letter-spacing: 0.02em;
+}
+
+/* Keybind Slot */
+.setting-keybind {
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2px 0;
+  cursor: pointer;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.08);
+  padding-bottom: 5px;
+}
+
+.setting-bind-badge {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  color: #64748B;
+  background: rgba(255, 255, 255, 0.04);
+  padding: 1px 6px;
+  border-radius: 3px;
+}
+
+.setting-bind-badge.is-listening {
+  color: #FBBF24;
+  background: rgba(251, 191, 36, 0.15);
+  border: 1px solid #FBBF24;
+  animation: pulseAmber 1s infinite;
+}
+
+@keyframes pulseAmber {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* Boolean Toggle Switch */
+.setting-boolean {
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  padding: 2px 0;
+}
+
+.setting-boolean:hover .setting-label {
+  color: #F1F5F9;
+}
+
+.flow-toggle-switch {
+  width: 24px;
+  height: 12px;
+  background: #1E293B;
+  border-radius: 12px;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.flow-toggle-switch .toggle-knob {
+  width: 8px;
+  height: 8px;
+  background: #94A3B8;
+  border-radius: 50%;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  transition: all 0.2s ease;
+}
+
+.flow-toggle-switch.is-active {
+  background: #38BDF8;
+}
+
+.flow-toggle-switch.is-active .toggle-knob {
+  left: 14px;
+  background: #FFFFFF;
+}
+
+/* Number Slider */
+.setting-number .setting-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.setting-num-val {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  color: #38BDF8;
+  font-weight: 600;
+}
+
+.flow-slider-container {
+  position: relative;
+  width: 100%;
+  height: 6px;
+  display: flex;
+  align-items: center;
+}
+
+.flow-slider-range {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 4px;
+  background: #1E293B;
+  border-radius: 2px;
+  outline: none;
+  cursor: pointer;
+  position: relative;
+  z-index: 2;
+  margin: 0;
+}
+
+.flow-slider-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #FFFFFF;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.6);
+  cursor: grab;
+}
+
+.flow-slider-range::-webkit-slider-thumb:active {
+  cursor: grabbing;
+}
+
+.slider-track-fill {
+  position: absolute;
+  left: 0;
+  top: 1px;
+  height: 4px;
+  background: #38BDF8;
+  border-radius: 2px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Color Swatch */
+.setting-color {
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.color-swatch-box {
+  width: 22px;
+  height: 12px;
+  border-radius: 3px;
+  border: 1px solid #475569;
+}
+
+/* String Input */
+.flow-setting-input {
+  width: 100%;
+  height: 20px;
+  background: #161224;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 3px;
+  color: #FFFFFF;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  padding: 0 6px;
+  outline: none;
+}
+
+.flow-setting-input:focus {
+  border-bottom: 2px solid #38BDF8;
+  background: #1E1A2E;
+}
+
+/* Action Button */
+.flow-setting-action-btn {
+  width: 100%;
+  height: 20px;
+  background: #231B3A;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 3px;
+  color: #CBD5E1;
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.flow-setting-action-btn:hover {
+  background: #DC2626;
+  color: #FFFFFF;
+}
+
+/* ==========================================================================
+   FLOATING BOTTOM BAR (Configs + Search Modules)
+   ========================================================================== */
+.flow-gui-bottom-bar {
+  position: absolute;
+  bottom: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  z-index: 50;
+}
+
+.flow-gui-btn {
+  height: 28px;
+  padding: 0 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(18, 14, 34, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 6px;
+  color: #B4B4BC;
+  font-family: var(--font-heading);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  transition: all 0.2s ease;
+}
+
+.flow-gui-btn:hover {
+  background: rgba(34, 28, 56, 0.95);
+  color: #FFFFFF;
+  border-color: rgba(255, 255, 255, 0.25);
+  transform: translateY(-1px);
+}
+
+.flow-gui-search-box {
+  position: relative;
+  width: 220px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  background: rgba(18, 14, 34, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 6px;
+  padding: 0 8px;
+  backdrop-filter: blur(10px);
+}
+
+.flow-gui-search-box:focus-within {
+  border-bottom: 2px solid #38BDF8;
+  background: rgba(28, 22, 50, 0.95);
+}
+
+.search-icon {
+  color: #64748B;
+  margin-right: 6px;
+}
+
+#guiSearchInput {
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  color: #FFFFFF;
+  letter-spacing: 0.04em;
+}
+
+#guiSearchInput::placeholder {
+  color: #64748B;
+}
+
+.search-clear-btn {
+  background: transparent;
+  border: none;
+  color: #94A3B8;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 0 4px;
+}
+
+.search-clear-btn:hover {
+  color: #FFFFFF;
+}
+
+/* ==========================================================================
+   TOAST NOTIFICATIONS (NotificationManager.java Replica)
+   ========================================================================== */
+.flow-notifications-container {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 8px;
+  pointer-events: none;
+  z-index: 100;
+}
+
+.flow-toast-card {
+  background: rgba(18, 14, 34, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-left: 3px solid #38BDF8;
+  border-radius: 6px;
+  padding: 8px 14px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(12px);
+  animation: toastSlideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.3s ease;
+  min-width: 180px;
+}
+
+.flow-toast-card.toast-exit {
+  opacity: 0;
+  transform: translateX(30px);
+}
+
+@keyframes toastSlideIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.toast-title {
+  font-family: var(--font-heading);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.toast-message {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: #94A3B8;
+  margin-top: 1px;
+}
+
+/* ==========================================================================
+   CONFIG PRESETS MODAL
+   ========================================================================== */
+.flow-modal-backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(8px);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flow-modal-card {
+  width: 520px;
+  max-width: 90%;
+  background: #0d0a1a;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.9);
+  padding: 24px;
+  animation: modalPop 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes modalPop {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.modal-header h3 {
+  font-size: 18px;
+}
+
+.modal-close {
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.modal-close:hover {
+  color: #FFFFFF;
+}
+
+.modal-subtitle {
+  font-size: 13px;
+  margin-bottom: 20px;
+}
+
+.config-presets-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.config-preset-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  padding: 12px 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.config-preset-item:hover {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(56, 189, 248, 0.4);
+}
+
+.preset-icon {
+  font-size: 22px;
+}
+
+.preset-info {
+  flex: 1;
+}
+
+.preset-info h4 {
+  font-size: 13.5px;
+  margin-bottom: 2px;
+}
+
+.preset-info p {
+  font-size: 11.5px;
+}
+
+.preset-load-btn {
+  background: rgba(56, 189, 248, 0.15);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  color: var(--client-cyan);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.config-preset-item:hover .preset-load-btn {
+  background: var(--client-cyan);
+  color: #000;
+}
+
+.config-actions-row {
+  display: flex;
+  gap: 10px;
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 16px;
+}
+
+.config-action-btn {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-main);
+  padding: 8px;
+  border-radius: 6px;
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.config-action-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #FFFFFF;
+}
+
+
+/* === css/radar.css === */
+/* ==========================================================================
+   DONUTSMP RADAR & BASE FINDER SIMULATOR STYLES
+   ========================================================================== */
+
+.donut-radar-section {
+  background: linear-gradient(180deg, #050508 0%, #080614 50%, #050508 100%);
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.radar-showcase-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 32px;
+  align-items: center;
+}
+
+@media (max-width: 960px) {
+  .radar-showcase-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.radar-viewport-container {
+  position: relative;
+  background: #090714;
+  border: 1px solid rgba(0, 120, 255, 0.25);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.7), 0 0 35px rgba(0, 120, 255, 0.15);
+  overflow: hidden;
+  height: 480px;
+}
+
+.radar-viewport-container canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  cursor: crosshair;
+}
+
+.radar-overlay-badge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(18, 14, 34, 0.85);
+  border: 1px solid rgba(0, 120, 255, 0.35);
+  padding: 5px 12px;
+  border-radius: 6px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: #38BDF8;
+  backdrop-filter: blur(8px);
+  pointer-events: none;
+}
+
+.radar-live-blip {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #10B981;
+  box-shadow: 0 0 8px #10B981;
+  animation: radarBlink 1.2s infinite;
+}
+
+@keyframes radarBlink {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
+}
+
+.radar-controls-overlay {
+  position: absolute;
+  bottom: 14px;
+  left: 14px;
+  right: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(18, 14, 34, 0.85);
+  border: 1px solid var(--border-subtle);
+  padding: 8px 14px;
+  border-radius: 8px;
+  backdrop-filter: blur(10px);
+}
+
+.radar-slider-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+}
+
+.radar-slider-wrap input {
+  accent-color: var(--client-donut-blue);
+  cursor: pointer;
+}
+
+.radar-hint-text {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  color: #64748B;
+}
+
+/* Radar Info HUD Panel */
+.radar-info-box {
+  background: rgba(18, 14, 34, 0.7);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  backdrop-filter: blur(12px);
+}
+
+.radar-status-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 1px solid var(--border-subtle);
+  padding-bottom: 12px;
+}
+
+.status-live-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #0078FF;
+  box-shadow: 0 0 10px #0078FF;
+}
+
+.status-title {
+  font-family: var(--font-heading);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: #FFFFFF;
+}
+
+.status-sim-tag {
+  margin-left: auto;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: #38BDF8;
+  background: rgba(56, 189, 248, 0.12);
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.radar-telemetry-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.telemetry-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.telemetry-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: #64748B;
+}
+
+.telemetry-val {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #FFFFFF;
+}
+
+.telemetry-val.highlight-cyan {
+  color: #38BDF8;
+}
+
+/* Target Detected Card */
+.radar-target-card {
+  background: rgba(0, 120, 255, 0.08);
+  border: 1px solid rgba(0, 120, 255, 0.35);
+  border-radius: 10px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.radar-target-card.empty-target {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px dashed var(--border-subtle);
+  text-align: center;
+  padding: 24px 14px;
+}
+
+.empty-target-title {
+  font-family: var(--font-heading);
+  font-size: 14px;
+  font-weight: 600;
+  color: #94A3B8;
+  margin-bottom: 4px;
+}
+
+.radar-target-card.empty-target p {
+  font-size: 12px;
+}
+
+.target-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.target-badge {
+  font-family: var(--font-heading);
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  color: #EF4444;
+  background: rgba(239, 68, 68, 0.15);
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.target-dist {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: #38BDF8;
+}
+
+.target-type {
+  font-size: 15px;
+  font-weight: 700;
+  color: #FFFFFF;
+}
+
+.target-coords {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: #E2E8F0;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 6px 10px;
+  border-radius: 6px;
+}
+
+.target-reason {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: #94A3B8;
+  line-height: 1.4;
+}
+
+.target-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 4px;
+}
+
+.target-btn-copy {
+  background: linear-gradient(135deg, #0078FF 0%, #0052cc 100%);
+  border: none;
+  color: #FFFFFF;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.target-btn-copy:hover {
+  background: #38BDF8;
+  color: #000;
+  transform: translateY(-1px);
+}
+
+.target-score-pill {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  color: #FBBF24;
+}
+
+
+/* === css/components.css === */
+/* ==========================================================================
+   FLOW CLIENT - COMPONENTS, HERO, FEATURES, ANTICHEAT & DOWNLOAD
+   ========================================================================== */
+
+/* ==========================================================================
+   HERO SECTION (Recreating Reference Image Aesthetic)
+   ========================================================================== */
+.flow-hero-section {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 120px 0 60px 0;
+  overflow: hidden;
+  background: #040407;
+}
+
+.hero-canvas-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.hero-content-wrapper {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 920px;
+  margin: 0 auto;
+  pointer-events: auto;
+}
+
+/* Center Image Replica Flow Brand */
+.hero-brand-center {
+  margin-bottom: 24px;
+}
+
+.hero-flow-title {
+  font-family: var(--font-heading);
+  font-size: 72px;
+  font-weight: 300;
+  letter-spacing: 0.45em;
+  text-transform: lowercase;
+  color: #FFFFFF;
+  text-shadow: 0 0 35px rgba(255, 255, 255, 0.6), 0 0 70px rgba(255, 255, 255, 0.2);
+  margin-left: 0.45em; /* Optical centering for letter spacing */
+  animation: floatTitle 4s ease-in-out infinite alternate;
+}
+
+@keyframes floatTitle {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-6px); }
+}
+
+@media (max-width: 768px) {
+  .hero-flow-title {
+    font-size: 44px;
+    letter-spacing: 0.3em;
+    margin-left: 0.3em;
+  }
+}
+
+.hero-subtitle-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--client-cyan);
+  background: rgba(18, 14, 34, 0.7);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  padding: 6px 16px;
+  border-radius: var(--radius-full);
+  margin-bottom: 24px;
+  backdrop-filter: blur(10px);
+}
+
+.hero-main-headline {
+  font-size: 38px;
+  line-height: 1.2;
+  margin-bottom: 20px;
+  font-weight: 800;
+}
+
+@media (max-width: 768px) {
+  .hero-main-headline {
+    font-size: 26px;
+  }
+}
+
+.hero-description {
+  font-size: 18px;
+  line-height: 1.6;
+  max-width: 720px;
+  margin: 0 auto 36px auto;
+  color: #CBD5E1;
+}
+
+.hero-cta-group {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 50px;
+}
+
+.hero-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(135deg, #DC2626 0%, #B91C1C 100%);
+  color: #FFFFFF;
+  font-size: 15px;
+  font-weight: 700;
+  padding: 14px 28px;
+  border-radius: 10px;
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  box-shadow: 0 10px 30px rgba(220, 38, 38, 0.4), 0 0 20px rgba(220, 38, 38, 0.2);
+  transition: all 0.25s ease;
+  cursor: pointer;
+}
+
+.hero-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 38px rgba(220, 38, 38, 0.6), 0 0 30px rgba(220, 38, 38, 0.4);
+  border-color: #EF4444;
+}
+
+.hero-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(18, 14, 34, 0.85);
+  color: #FFFFFF;
+  font-size: 15px;
+  font-weight: 600;
+  padding: 14px 26px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  transition: all 0.25s ease;
+  cursor: pointer;
+}
+
+.hero-btn-secondary:hover {
+  background: rgba(28, 22, 50, 0.95);
+  border-color: rgba(56, 189, 248, 0.5);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(56, 189, 248, 0.2);
+}
+
+.hero-stats-strip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+  padding: 20px 30px;
+  background: rgba(10, 8, 20, 0.65);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  backdrop-filter: blur(14px);
+  max-width: 780px;
+  margin: 0 auto;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.stat-number {
+  font-family: var(--font-heading);
+  font-size: 28px;
+  font-weight: 800;
+  color: #FFFFFF;
+}
+
+.stat-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: #64748B;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* ==========================================================================
+   DONUTSMP & SUS CHUNK FINDER CARDS
+   ========================================================================== */
+.donutsmp-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+@media (max-width: 900px) {
+  .donutsmp-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.donut-feature-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  backdrop-filter: blur(14px);
+  position: relative;
+  overflow: hidden;
+}
+
+.donut-feature-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(0, 120, 255, 0.6), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.donut-feature-card:hover {
+  background: var(--bg-card-hover);
+  border-color: rgba(0, 120, 255, 0.4);
+  transform: translateY(-4px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), 0 0 25px rgba(0, 120, 255, 0.15);
+}
+
+.donut-feature-card:hover::before {
+  opacity: 1;
+}
+
+.donut-card-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: rgba(0, 120, 255, 0.12);
+  border: 1px solid rgba(0, 120, 255, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #38BDF8;
+}
+
+.donut-card-title {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.donut-card-desc {
+  font-size: 14.5px;
+  line-height: 1.6;
+}
+
+.donut-tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: auto;
+  padding-top: 12px;
+}
+
+.donut-pill {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: #94A3B8;
+  background: rgba(255, 255, 255, 0.04);
+  padding: 3px 8px;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* ==========================================================================
+   ANTICHEAT & BYPASS SECURITY MATRIX
+   ========================================================================== */
+.bypass-matrix-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+}
+
+@media (max-width: 850px) {
+  .bypass-matrix-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+.bypass-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 30px;
+  backdrop-filter: blur(14px);
+}
+
+.bypass-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.bypass-title {
+  font-size: 22px;
+}
+
+.bypass-badge-active {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  color: #10B981;
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+}
+
+.anticheat-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.anticheat-table th, .anticheat-table td {
+  padding: 10px 8px;
+  text-align: left;
+  font-size: 13.5px;
+}
+
+.anticheat-table th {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: #64748B;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.anticheat-table td {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+  color: #CBD5E1;
+}
+
+.anticheat-name {
+  font-weight: 600;
+  color: #FFFFFF;
+}
+
+.status-passed {
+  color: #10B981;
+  font-weight: 700;
+  font-family: var(--font-mono);
+  font-size: 12px;
+}
+
+/* ==========================================================================
+   DOWNLOAD CENTER & INSTALLATION
+   ========================================================================== */
+.download-section {
+  background: radial-gradient(circle at 50% 10%, rgba(30, 16, 60, 0.35) 0%, rgba(5, 5, 8, 1) 100%);
+}
+
+.download-box-card {
+  background: rgba(18, 14, 34, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-xl);
+  padding: 40px;
+  max-width: 860px;
+  margin: 0 auto;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(16px);
+  text-align: center;
+}
+
+.download-header h2 {
+  font-size: 34px;
+  margin-bottom: 12px;
+}
+
+.download-header p {
+  font-size: 16px;
+  margin-bottom: 30px;
+}
+
+.download-action-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 36px;
+}
+
+.btn-download-client {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: linear-gradient(135deg, #DC2626 0%, #991B1B 100%);
+  color: #FFFFFF;
+  font-size: 16px;
+  font-weight: 700;
+  padding: 16px 36px;
+  border-radius: 12px;
+  border: 1px solid rgba(239, 68, 68, 0.5);
+  box-shadow: 0 10px 30px rgba(220, 38, 38, 0.5);
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.btn-download-client:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 45px rgba(220, 38, 38, 0.7);
+}
+
+.install-steps-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  text-align: left;
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 30px;
+}
+
+@media (max-width: 768px) {
+  .install-steps-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.step-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+  padding: 16px;
+}
+
+.step-number {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--client-cyan);
+  margin-bottom: 6px;
+}
+
+.step-card h4 {
+  font-size: 15px;
+  margin-bottom: 4px;
+}
+
+.step-card p {
+  font-size: 12.5px;
+}
+
+/* ==========================================================================
+   FAQ SECTION
+   ========================================================================== */
+.faq-list {
+  max-width: 760px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.faq-item {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+  overflow: hidden;
+  transition: all 0.2s ease;
+}
+
+.faq-item:hover {
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.faq-question {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 22px;
+  cursor: pointer;
+  font-family: var(--font-heading);
+  font-size: 16.5px;
+  font-weight: 600;
+  color: #FFFFFF;
+}
+
+.faq-toggle-icon {
+  font-size: 18px;
+  color: var(--text-muted);
+  transition: transform 0.2s ease;
+}
+
+.faq-item.is-open .faq-toggle-icon {
+  transform: rotate(45deg);
+  color: var(--client-cyan);
+}
+
+.faq-answer {
+  display: none;
+  padding: 0 22px 18px 22px;
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: #94A3B8;
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+  padding-top: 12px;
+}
+
+.faq-item.is-open .faq-answer {
+  display: block;
+}
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+.flow-footer {
+  background: #020204;
+  border-top: 1px solid var(--border-subtle);
+  padding: 60px 0 30px 0;
+}
+
+.footer-top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.footer-bottom-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding-top: 24px;
+  font-size: 13px;
+  color: #64748B;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+
+
+  </style>
+</head>
+<body>
+
+  <!-- ==================== STICKY NAVIGATION BAR ==================== -->
+  <header class="flow-navbar">
+    <div class="flow-container">
+      <div class="nav-wrapper">
+        <a href="#hero" class="brand-logo" title="Flow Client Home">
+          <span class="logo-text-spaced">flow</span>
+          <span class="logo-version-badge">v1.0.0 • 1.21.11</span>
+        </a>
+
+        <nav class="nav-menu-container">
+          <ul class="nav-links-menu">
+            <li><a href="#hero" class="nav-link">Overview</a></li>
+            <li><a href="#donutsmp" class="nav-link has-glow-dot">Sus Chunk Finder</a></li>
+            <li><a href="#bypasses" class="nav-link">Undetected Matrix</a></li>
+            <li><a href="#clickgui-section" class="nav-link">Live ClickGUI</a></li>
+            <li><a href="#download" class="nav-link">Download</a></li>
+            <li><a href="#faq" class="nav-link">FAQ</a></li>
+          </ul>
+        </nav>
+
+        <div class="nav-actions">
+          <button class="btn-icon-audio" id="btnToggleAudio" title="Toggle UI Sound Effects">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+          </button>
+          <a href="#clickgui-section" class="nav-btn-primary">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line></svg>
+            <span>Launch Web GUI</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==================== HERO SECTION (RECREATING REFERENCE IMAGE) ==================== -->
+  <section class="flow-hero-section" id="hero">
+    <!-- Generative Wave Ribbon & Interactive Particles Canvas -->
+    <canvas id="flowWaveCanvas" class="hero-canvas-background"></canvas>
+
+    <div class="flow-container">
+      <div class="hero-content-wrapper">
+        <div class="hero-brand-center">
+          <h1 class="hero-flow-title">flow</h1>
+        </div>
+
+        <div class="hero-subtitle-tag">
+          <span>⚡ Fabric Native 1.21.11 Client</span>
+          <span>•</span>
+          <span>DonutSMP & Anarchy Ready</span>
+        </div>
+
+        <h2 class="hero-main-headline gradient-text">
+          Precision Engineering for DonutSMP & Modern Minecraft
+        </h2>
+
+        <p class="hero-description">
+          Dominate with our intelligent multi-signal <strong>Sus Chunk Finder</strong> that turns base hunting into child's play, 
+          battle-tested <strong>undetected anticheat bypasses</strong>, and an ultra-fluid glassmorphic ClickGUI.
+        </p>
+
+        <div class="hero-cta-group">
+          <a href="#clickgui-section" class="hero-btn-primary">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8"></polygon></svg>
+            <span>Explore Interactive Client GUI</span>
+          </a>
+          <a href="#donutsmp" class="hero-btn-secondary">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="22" y1="12" x2="18" y2="12"></line><line x1="6" y1="12" x2="2" y2="12"></line><line x1="12" y1="6" x2="12" y2="2"></line><line x1="12" y1="22" x2="12" y2="18"></line></svg>
+            <span>Live Radar Scanner Demo</span>
+          </a>
+        </div>
+
+        <!-- Live Performance Stats Strip -->
+        <div class="hero-stats-strip">
+          <div class="stat-item">
+            <span class="stat-number gradient-cyan">50+</span>
+            <span class="stat-label">Engineered Modules</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number gradient-donut">100%</span>
+            <span class="stat-label">DonutSMP Undetected</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">0-Lag</span>
+            <span class="stat-label">Async Chunk Queue</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number gradient-cyan">1.21.11</span>
+            <span class="stat-label">Fabric Native</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== DONUTSMP & SUS CHUNK FINDER SPOTLIGHT ==================== -->
+  <section class="donut-radar-section" id="donutsmp">
+    <div class="flow-container">
+      <div class="section-header-center">
+        <div class="section-tag tag-donut">DonutSMP Specialized Suite</div>
+        <h2 class="section-title">Sus Chunk Finder & Base Hunting Made Easy</h2>
+        <p class="section-desc">
+          Finding hidden underground vaults, shulker stashes, and mega-bases on DonutSMP used to take hours. 
+          Flow’s multi-signal heuristic chunk scanner pinpoints underground anomalies automatically without causing a single frame drop.
+        </p>
+      </div>
+
+      <!-- Radar Showcase Grid -->
+      <div class="radar-showcase-grid">
+        <!-- Interactive Canvas Radar -->
+        <div class="radar-viewport-container">
+          <div class="radar-overlay-badge">
+            <span class="radar-live-blip"></span>
+            <span>DONUTSMP LIVE SCANNER • CLICK MAP TO INJECT VAULT</span>
+          </div>
+          <canvas id="radarCanvas"></canvas>
+          <div class="radar-controls-overlay">
+            <div class="radar-slider-wrap">
+              <label for="radarSensitivitySlider">Sensitivity Threshold:</label>
+              <input type="range" id="radarSensitivitySlider" min="1" max="15" value="5" step="1" />
+              <span id="radarSensitivityVal" style="color: #38BDF8; font-weight: 700;">5</span>
+            </div>
+            <span class="radar-hint-text">Simulating Elytra Speed: 0.8 Chunks/s</span>
+          </div>
+        </div>
+
+        <!-- Radar Telemetry & Target Details -->
+        <div class="radar-info-box" id="radarInfoPanel">
+          <!-- Dynamically populated by radarSim.js -->
+        </div>
+      </div>
+
+      <!-- DonutSMP Feature Cards Grid -->
+      <div class="donutsmp-grid" style="margin-top: 50px;">
+        <div class="donut-feature-card">
+          <div class="donut-card-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polygon points="12 8 8 12 12 16 16 12 12 8"></polygon></svg>
+          </div>
+          <h3 class="donut-card-title">10-Signal Detection Matrix</h3>
+          <p class="donut-card-desc">
+            Flow evaluates underground containers (&lt;Y55), armor stands, workstations, obsidian portals, rotated deepslate blockstates, redstone circuits, artificial lights, tamed pets, and multi-geode hub clustering.
+          </p>
+          <div class="donut-tag-list">
+            <span class="donut-pill">Containers &lt;Y55</span>
+            <span class="donut-pill">Rotated Deepslate</span>
+            <span class="donut-pill">Multi-Geodes</span>
+            <span class="donut-pill">Redstone</span>
+          </div>
+        </div>
+
+        <div class="donut-feature-card">
+          <div class="donut-card-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+          </div>
+          <h3 class="donut-card-title">Staff & Vanish Detector</h3>
+          <p class="donut-card-desc">
+            Monitors DonutSMP player tab list and network packets to detect staff members joining, entering vanish, or changing gamemodes. Features instant audio alarm and emergency auto-disconnect.
+          </p>
+          <div class="donut-tag-list">
+            <span class="donut-pill">Vanish Alerts</span>
+            <span class="donut-pill">Auto Disconnect</span>
+            <span class="donut-pill">Discord Webhooks</span>
+          </div>
+        </div>
+
+        <div class="donut-feature-card">
+          <div class="donut-card-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+          </div>
+          <h3 class="donut-card-title">Stash & Netherite Finder</h3>
+          <p class="donut-card-desc">
+            Quickly locate massive shulker stashes and unmined Ancient Debris veins in the Nether with bounding boxes, 3D tracer lines, and fast Shulker Dropper for 1-click raiding.
+          </p>
+          <div class="donut-tag-list">
+            <span class="donut-pill">Ancient Debris ESP</span>
+            <span class="donut-pill">Stash Density</span>
+            <span class="donut-pill">Shulker Dropper</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== UNDETECTED ANTICHEAT BYPASS MATRIX ==================== -->
+  <section class="flow-bypass-section" id="bypasses">
+    <div class="flow-container">
+      <div class="section-header-center">
+        <div class="section-tag tag-red">Undetected Security Architecture</div>
+        <h2 class="section-title">Flawless Anticheat Bypasses</h2>
+        <p class="section-desc">
+          Flow is built from the ground up with strict stealth algorithms, humanized aim bezier curves, and packet spoofing to bypass modern Minecraft anticheats effortlessly.
+        </p>
+      </div>
+
+      <div class="bypass-matrix-container">
+        <!-- Anticheat Compatibility Table -->
+        <div class="bypass-card">
+          <div class="bypass-header">
+            <h3 class="bypass-title">Server Anticheat Status</h3>
+            <span class="bypass-badge-active">ALL BYPASSES ACTIVE</span>
+          </div>
+          <table class="anticheat-table">
+            <thead>
+              <tr>
+                <th>Anticheat</th>
+                <th>Supported Modules</th>
+                <th>Bypass Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="anticheat-name">DonutSMP Custom</td>
+                <td>Sus Chunk Finder, AutoTotem, ElytraFly</td>
+                <td class="status-passed">✓ UNDETECTED</td>
+              </tr>
+              <tr>
+                <td class="anticheat-name">GrimAC</td>
+                <td>AimAssist, AutoClicker, Reach (3.3m), SafeWalk</td>
+                <td class="status-passed">✓ 100% BYPASS</td>
+              </tr>
+              <tr>
+                <td class="anticheat-name">Vulcan / Polar</td>
+                <td>AutoCrystal, AutoDoubleHand, FastPlace, FastLadder</td>
+                <td class="status-passed">✓ 100% BYPASS</td>
+              </tr>
+              <tr>
+                <td class="anticheat-name">Intave / Verus</td>
+                <td>TriggerBot, AutoEat, AutoArmor, NameProtect</td>
+                <td class="status-passed">✓ 100% BYPASS</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Ghost vs Blatant Overview -->
+        <div class="bypass-card">
+          <div class="bypass-header">
+            <h3 class="bypass-title">Stealth vs Blatant Modes</h3>
+            <span class="bypass-badge-active">CONFIGURABLE</span>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 16px;">
+            <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border-subtle); border-radius: 8px; padding: 14px;">
+              <h4 style="color: #10B981; font-size: 14.5px; margin-bottom: 4px;">Ghost Mode (100% Stream & Screen-Share Proof)</h4>
+              <p style="font-size: 13px;">
+                Humanized AimAssist with smooth curve interpolation, randomized Gaussian CPS auto clicker (12-16 CPS), local NameProtect, and discreet Player ESP.
+              </p>
+            </div>
+            <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border-subtle); border-radius: 8px; padding: 14px;">
+              <h4 style="color: #EF4444; font-size: 14.5px; margin-bottom: 4px;">Blatant PvP Mode (Max Performance)</h4>
+              <p style="font-size: 13px;">
+                Zero-delay AutoCrystal, AutoAnchor detonator, Double-Hand totem swapping, Freecam cavern exploration, and infinite glide ElytraFly.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== LIVE INTERACTIVE CLICKGUI SIMULATOR ==================== -->
+  <section class="clickgui-interactive-section" id="clickgui-section">
+    <div class="flow-container">
+      <div class="section-header-center">
+        <div class="section-tag">Interactive Client GUI</div>
+        <h2 class="section-title">Exact In-Browser Flow ClickGUI</h2>
+        <p class="section-desc">
+          Test drive Flow’s complete native Java ClickGUI directly in your browser. 
+          <strong>Left click</strong> any module to toggle it. <strong>Right click</strong> to expand keybinds and subsettings (sliders, switches, colors). 
+          Drag category windows anywhere on the canvas!
+        </p>
+      </div>
+
+      <!-- ClickGUI Simulator Frame -->
+      <div class="gui-simulator-frame">
+        <div class="gui-frame-header">
+          <div class="gui-window-controls">
+            <span class="gui-dot dot-red"></span>
+            <span class="gui-dot dot-yellow"></span>
+            <span class="gui-dot dot-green"></span>
+          </div>
+          <div class="gui-frame-title">Flow Client v1.0.0 (Minecraft 1.21.11 Fabric) • ClickGUI Screen</div>
+          <div class="gui-hint-badge">Press [ Right Shift ] or click below</div>
+        </div>
+
+        <!-- In-Browser ClickGUI Root Container -->
+        <div id="clickguiContainer"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== DOWNLOAD & INSTALLATION CENTER ==================== -->
+  <section class="download-section" id="download">
+    <div class="flow-container">
+      <div class="download-box-card">
+        <div class="download-header">
+          <div class="section-tag">Instant Access</div>
+          <h2>Download Flow Client v1.0.0</h2>
+          <p>Compatible with Minecraft 1.21.11, Fabric Loader &ge; 0.16.0, and Java 21+.</p>
+        </div>
+
+        <div class="download-action-row">
+          <button class="btn-download-client" id="btnMainDownload">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+            <span>Download Flow-1.0.0.jar</span>
+          </button>
+          <button class="hero-btn-secondary" id="btnCopyArgs">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+            <span>Copy JVM Flags</span>
+          </button>
+        </div>
+
+        <!-- 3 Step Quick Installation -->
+        <div class="install-steps-grid">
+          <div class="step-card">
+            <div class="step-number">STEP 01</div>
+            <h4>Install Fabric 1.21.11</h4>
+            <p>Download and install Fabric Loader for Minecraft 1.21.11 alongside Fabric API.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-number">STEP 02</div>
+            <h4>Place in .minecraft/mods</h4>
+            <p>Drop the <code>flow-1.0.0.jar</code> into your <code>.minecraft/mods</code> folder.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-number">STEP 03</div>
+            <h4>Launch & Press Right Shift</h4>
+            <p>Launch Minecraft. In-game, press <strong>Right Shift</strong> to open the Flow ClickGUI.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FAQ SECTION ==================== -->
+  <section class="faq-section" id="faq">
+    <div class="flow-container">
+      <div class="section-header-center">
+        <div class="section-tag">Got Questions?</div>
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <p class="section-desc">Everything you need to know about Flow Client and DonutSMP base finding.</p>
+      </div>
+
+      <div class="faq-list">
+        <div class="faq-item is-open">
+          <div class="faq-question">
+            <span>How does Sus Chunk Finder find bases on DonutSMP without getting banned?</span>
+            <span class="faq-toggle-icon">+</span>
+          </div>
+          <div class="faq-answer">
+            Sus Chunk Finder works completely client-side by analyzing world chunk packets already sent to your client by the server. It performs zero illegal packet requests and operates on a 4-chunk-per-tick queue, making it 100% undetectable to server-side anticheats.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>What signals trigger the Sus Chunk Finder?</span>
+            <span class="faq-toggle-icon">+</span>
+          </div>
+          <div class="faq-answer">
+            Flow evaluates 10 unique heuristic signals: underground containers below Y55 (chests, shulkers, barrels), armor stands and item frames, workstations and beds, obsidian portal rooms, horizontally rotated deepslate blocks, redstone clocks/pistons, artificial light sources, villagers/tamed pets, and multi-geode clustering.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>How do I open the ClickGUI in Minecraft?</span>
+            <span class="faq-toggle-icon">+</span>
+          </div>
+          <div class="faq-answer">
+            By default, press <strong>Right Shift</strong> on your keyboard. You can also rebind any individual module or access presets through the bottom "CONFIGS" button.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>Is Flow Client compatible with other mods like Sodium and Iris?</span>
+            <span class="faq-toggle-icon">+</span>
+          </div>
+          <div class="faq-answer">
+            Yes! Flow is built for Fabric 1.21.11 and is fully compatible with Sodium, Lithium, Iris Shaders, and essential optimization mods.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="flow-footer">
+    <div class="flow-container">
+      <div class="footer-top-row">
+        <div class="brand-logo">
+          <span class="logo-text-spaced">flow</span>
+          <span class="logo-version-badge">v1.0.0</span>
+        </div>
+        <div style="display: flex; gap: 24px; font-size: 14px; color: #94A3B8;">
+          <a href="#hero" class="nav-link">Overview</a>
+          <a href="#donutsmp" class="nav-link">Sus Chunk Finder</a>
+          <a href="#clickgui-section" class="nav-link">Live GUI</a>
+          <a href="#download" class="nav-link">Download</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom-row">
+        <span>© 2026 Flow Client. Built for Fabric 1.21.11 & DonutSMP.</span>
+        <span>Crafted for high performance, aesthetics, and stealth.</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Embedded Modular Scripts -->
+  <script>
+// === js/audio.js ===
+// Procedural Web Audio Synthesizer for Flow Client UI sounds
+class FlowAudio {
+  constructor() {
+    this.ctx = null;
+    this.muted = false;
+  }
+
+  init() {
+    if (!this.ctx) {
+      const AudioContext = window.AudioContext || window.webkitAudioContext;
+      if (AudioContext) {
+        this.ctx = new AudioContext();
+      }
+    }
+    if (this.ctx && this.ctx.state === 'suspended') {
+      this.ctx.resume();
+    }
+  }
+
+  toggleMute() {
+    this.muted = !this.muted;
+    return this.muted;
+  }
+
+  playClick(freq = 600, duration = 0.035, type = 'sine') {
+    if (this.muted) return;
+    try {
+      this.init();
+      if (!this.ctx) return;
+      const osc = this.ctx.createOscillator();
+      const gain = this.ctx.createGain();
+
+      osc.type = type;
+      osc.frequency.setValueAtTime(freq, this.ctx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(freq * 0.4, this.ctx.currentTime + duration);
+
+      gain.gain.setValueAtTime(0.12, this.ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + duration);
+
+      osc.connect(gain);
+      gain.connect(this.ctx.destination);
+
+      osc.start();
+      osc.stop(this.ctx.currentTime + duration);
+    } catch (e) {
+      // Audio autoplay policy fallback
+    }
+  }
+
+  playToggle(enabled) {
+    if (this.muted) return;
+    try {
+      this.init();
+      if (!this.ctx) return;
+      const freq1 = enabled ? 440 : 580;
+      const freq2 = enabled ? 880 : 260;
+      const dur = 0.06;
+
+      const osc = this.ctx.createOscillator();
+      const gain = this.ctx.createGain();
+
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(freq1, this.ctx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(freq2, this.ctx.currentTime + dur);
+
+      gain.gain.setValueAtTime(0.15, this.ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + dur);
+
+      osc.connect(gain);
+      gain.connect(this.ctx.destination);
+
+      osc.start();
+      osc.stop(this.ctx.currentTime + dur);
+    } catch (e) {}
+  }
+
+  playRadarPing() {
+    if (this.muted) return;
+    try {
+      this.init();
+      if (!this.ctx) return;
+      const osc = this.ctx.createOscillator();
+      const gain = this.ctx.createGain();
+
+      osc.type = 'triangle';
+      osc.frequency.setValueAtTime(1046.5, this.ctx.currentTime); // C6
+      osc.frequency.exponentialRampToValueAtTime(523.25, this.ctx.currentTime + 0.18);
+
+      gain.gain.setValueAtTime(0.18, this.ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.18);
+
+      osc.connect(gain);
+      gain.connect(this.ctx.destination);
+
+      osc.start();
+      osc.stop(this.ctx.currentTime + 0.18);
+    } catch (e) {}
+  }
+}
+
+const flowAudio = new FlowAudio();
+window.flowAudio = flowAudio;
+
+
+// === js/modulesData.js ===
+// Flow Client Modules Database - 100% Extracted from Flow Client Java Source
+const FLOW_CATEGORIES = [
+  { id: 'COMBAT', name: 'Combat', icon: 'swords', description: 'Advanced PvP, crystal speed & combat assistance' },
+  { id: 'RENDER', name: 'Render', icon: 'eye', description: 'World visualizers, ESPs, tracers & chams' },
+  { id: 'MISC', name: 'Misc', icon: 'sparkles', description: 'Movement, automation, utility & stealth helpers' },
+  { id: 'DONUT', name: 'Donut', icon: 'zap', description: 'Specialized DonutSMP base hunting & exploit suite' },
+  { id: 'CLIENT', name: 'Client', icon: 'sliders', description: 'HUD customization, Spotify sync & config manager' }
+];
+
+const FLOW_MODULES = [
+  // ==================== COMBAT ====================
+  {
+    name: 'Auto Totem',
+    key: 'AUTOTOTEM',
+    category: 'COMBAT',
+    description: 'Automatically switches totems into offhand with smart health threshold & double-hand protection',
+    enabled: true,
+    keybind: 'NONE',
+    settings: [
+      { type: 'number', name: 'Health Threshold', value: 16.0, min: 1.0, max: 20.0, step: 0.5 },
+      { type: 'boolean', name: 'Smart Swap', value: true },
+      { type: 'boolean', name: 'Double Hand Mode', value: true },
+      { type: 'number', name: 'Swap Delay (ms)', value: 0.0, min: 0.0, max: 150.0, step: 10.0 },
+      { type: 'boolean', name: 'Strict Anticheat', value: false },
+      { type: 'boolean', name: 'GrimAC Bypass', value: true }
+    ]
+  },
+  {
+    name: 'AutoDoubleHand',
+    key: 'AUTODOUBLEHAND',
+    category: 'COMBAT',
+    description: 'Equips a totem in offhand automatically whenever engaging in combat or holding weapons',
+    enabled: true,
+    keybind: 'NONE',
+    settings: [
+      { type: 'boolean', name: 'Weapon Trigger', value: true },
+      { type: 'boolean', name: 'Crystal Trigger', value: true },
+      { type: 'number', name: 'Delay (ms)', value: 20.0, min: 0.0, max: 100.0, step: 5.0 }
+    ]
+  },
+  {
+    name: 'Auto Anchor',
+    key: 'AUTOANCHOR',
+    category: 'COMBAT',
+    description: 'High-speed Respawn Anchor placer, glowstone charger and detonator with anti-self damage',
+    enabled: false,
+    keybind: 'NONE',
+    settings: [
+      { type: 'number', name: 'Placing Speed (ms)', value: 15.0, min: 0.0, max: 200.0, step: 5.0 },
+      { type: 'number', name: 'Max Self Damage', value: 6.0, min: 0.0, max: 20.0, step: 1.0 },
+      { type: 'boolean', name: 'Auto Switch', value: true },
+      { type: 'boolean', name: 'Predict Movement', value: true }
+    ]
+  },
+  {
+    name: 'Auto Crystal',
+    key: 'AUTOCRYSTAL',
+    category: 'COMBAT',
+    description: 'Blistering fast End Crystal placing and breaking engine with intelligent target raycasting',
+    enabled: false,
+    keybind: 'C',
+    settings: [
+      { type: 'number', name: 'Place Delay', value: 0.0, min: 0.0, max: 100.0, step: 5.0 },
+      { type: 'number', name: 'Break Delay', value: 0.0, min: 0.0, max: 100.0, step: 5.0 },
+      { type: 'number', name: 'Target Range', value: 5.2, min: 3.0, max: 6.0, step: 0.1 },
+      { type: 'number', name: 'Min Enemy Damage', value: 8.5, min: 1.0, max: 20.0, step: 0.5 },
+      { type: 'number', name: 'Max Self Damage', value: 5.0, min: 0.0, max: 15.0, step: 0.5 },
+      { type: 'boolean', name: 'Anti Suicide', value: true },
+      { type: 'boolean', name: 'Sequential Break', value: true },
+      { type: 'boolean', name: 'Raytrace Check', value: true }
+    ]
+  },
+  {
+    name: 'AutoClicker',
+    key: 'AUTOCLICKER',
+    category: 'COMBAT',
+    description: 'Humanized left and right auto clicker with randomized jitter and legit CPS curve distributions',
+    enabled: false,
+    keybind: 'NONE',
+    settings: [
+      { type: 'number', name: 'Min CPS', value: 12.0, min: 1.0, max: 20.0, step: 0.5 },
+      { type: 'number', name: 'Max CPS', value: 16.5, min: 1.0, max: 24.0, step: 0.5 },
+      { type: 'boolean', name: 'Random Jitter', value: true },
+      { type: 'boolean', name: 'Only Weapons', value: true },
+      { type: 'boolean', name: 'Break Blocks Check', value: true }
+    ]
+  },
+  {
+    name: 'TriggerBot',
+    key: 'TRIGGERBOT',
+    category: 'COMBAT',
+    description: 'Automatically strikes opponents the microsecond your crosshair aligns with their hitbox',
+    enabled: false,
+    keybind: 'NONE',
+    settings: [
+      { type: 'number', name: 'Hit Delay (ms)', value: 50.0, min: 0.0, max: 300.0, step: 10.0 },
+      { type: 'number', name: 'Reach Limit', value: 3.8, min: 3.0, max: 5.0, step: 0.1 },
+      { type: 'boolean', name: 'Criticals Sync', value: true },
+      { type: 'boolean', name: 'Weapon Only', value: true }
+    ]
+  },
+  {
+    name: 'Aim Assist',
+    key: 'AIMASSIST',
+    category: 'COMBAT',
+    description: 'Subtle, humanized crosshair magnetic pull towards opponent heads with smooth Bezier interpolation',
+    enabled: false,
+    keybind: 'NONE',
+    settings: [
+      { type: 'number', name: 'Horizontal Speed', value: 3.5, min: 0.5, max: 10.0, step: 0.5 },
+      { type: 'number', name: 'Vertical Speed', value: 2.0, min: 0.5, max: 10.0, step: 0.5 },
+      { type: 'number', name: 'FOV Radius', value: 65.0, min: 10.0, max: 180.0, step: 5.0 },
+      { type: 'boolean', name: 'Lock On Target', value: false },
+      { type: 'boolean', name: 'Ignore Invisibles', value: false }
+    ]
+  },
+  {
+    name: 'Hitbox',
+    key: 'HITBOX',
+    category: 'COMBAT',
+    description: 'Expands opponent entity collision hitboxes slightly for ultra-reliable sword & crystal hits',
+    enabled: false,
+    keybind: 'NONE',
+    settings: [
+      { type: 'number', name: 'Hitbox Expansion', value: 0.25, min: 0.0, max: 1.5, step: 0.05 },
+      { type: 'boolean', name: 'Show Hitbox Boxes', value: false }
+    ]
+  },
+
+  // ==================== RENDER ====================
+  {
+    name: 'Block ESP',
+    key: 'BLOCKESP',
+    category: 'RENDER',
+    description: 'Highlights custom chosen blocks through solid walls with outline and fill shaders',
+    enabled: false,
+    keybind: 'NONE',
+    settings: [
+      { type: 'number', name: 'Scan Radius', value: 48.0, min: 8.0, max: 128.0, step: 8.0 },
+      { type: 'color', name: 'Color', value: 0x38BDF8 },
+      { type: 'boolean', name: 'Tracers', value: false },
+      { type: 'boolean', name: 'Show Nametags', value: true }
+    ]
+  },
+  {
+    name: 'Geode ESP',
+    key: 'GEODEESP',
+    category: 'RENDER',
+    description: 'Locates Amethyst Geodes, budding amethyst blocks, and crystal clusters under terrain',
+    enabled: false,
+    keybind: 'NONE',
+    settings: [
+      { type: 'boolean', name: 'Budding Only', value: true },
+      { type: 'color', name: 'Color', value: 0xA855F7 },
+      { type: 'boolean', name: 'Tracers', value: false }
+    ]
+  },
+  {
+    name: 'Storage ESP',
+    key: 'STORAGEESP',
+    category: 'RENDER',
+    description: 'Highlights all chests, trapped chests, shulker boxes, barrels, and ender chests through walls',
+    enabled: true,
+    keybind: 'NONE',
+    settings: [
+      { type: 'boolean', name: 'Chests', value: true },
+      { type: 'boolean', name: 'Shulkers', value: true },
+      { type: 'boolean', name: 'Barrels', value: true },
+      { type: 'boolean', name: 'Ender Chests', value: true },
+      { type: 'boolean', name: 'Tracers', value: false },
+      { type: 'number', name: 'Scan Range', value: 128.0, min: 16.0, max: 1024.0, step: 16.0 },
+      { type: 'color', name: 'Chest Color', value: 0xFBBF24 },
+      { type: 'color', name: 'Shulker Color', value: 0xF472B6 },
+      { type: 'color', name: 'Barrel Color', value: 0x8B4513 },
+      { type: 'color', name: 'EnderChest Color', value: 0x38BDF8 }
+    ]
+  },
+  {
+    name: 'Spawner ESP',
+    key: 'SPAWNERESP',
+    category: 'RENDER',
+    description: 'Locates mob spawners with 3D chams, beacon beams, distance nametags, and sound alerts',
+    enabled: false,
+    keybind: 'NONE',
+    settings: [
+      { type: 'boolean', name: 'Chams', value: true },
+      { type: 'boolean', name: 'Beacon Beam', value: true },
+      { type: 'boolean', name: 'Tracers', value: true },
+      { type: 'boolean', name: 'Name Tags', value: true },
+      { type: 'boolean', name: 'Notifications', value: true },
+      { type: 'number', name: 'Range', value: 64.0, min: 16.0, max: 128.0, step: 8.0 },
+      { type: 'color', name: 'Color', value: 0xFF9900 }
+    ]
+  },
+  {
+    name: 'Player ESP',
+    key: 'PLAYERESP',
+    category: 'RENDER',
+    description: 'Highlights nearby players and entities with glowing outlines, bounding boxes, and tracers',
+    enabled: true,
+    keybind: 'NONE',
+    settings: [
+      { type: 'boolean', name: 'Chams', value: true },
+      { type: 'boolean', name: 'Tracers', value: true },
+      { type: 'boolean', name: 'Include All Mobs', value: false },
+      { type: 'number', name: 'Opacity', value: 0.9, min: 0.1, max: 1.0, step: 0.05 },
+      { type: 'color', name: 'Player Color', value: 0x00E5FF },
+      { type: 'color', name: 'Mob Color', value: 0x10B981 }
+    ]
+  },
+  {
+    name: 'Hole ESP',
+    key: 'HOLEESP',
+    category: 'RENDER',
+    description: 'Highlights 1x1 obsidian and unbreakable bedrock holes for strategic Crystal PvP positioning',
+    enabled: false,
+    keybind: 'NONE',
+    settings: [
+      { type: 'number', name: 'Radius', value: 8.0, min: 4.0, max: 24.0, step: 2.0 },
+      { type: 'color', name: 'Bedrock Color', value: 0x10B981 },
+      { type: 'color', name: 'Obsidian Color', value: 0xEF4444 }
+    ]
+  },
+  {
+    name: 'Pearl ESP',
+    key: 'PEARLESP',
+    category: 'RENDER',
+    description: 'Highlights flying Ender Pearls in mid-air and traces exact predicted landing positions',
+    enabled: false,
+    keybind: 'NONE',
+    settings: [
+      { type: 'boolean', name: 'Tracers', value: true },
+      { type: 'color', name: 'Pearl Color', value: 0x8B5CF6 }
+    ]
+  },
+  {
+    name: 'Item ESP',
+    key: 'ITEMESP',
+    category: 'RENDER',
+    description: 'Highlights all dropped ground loot, enchanted gear, and item stacks through obstacles',
+    enabled: false,
+    keybind: 'NONE',
+    settings: [
+      { type: 'color', name: 'Color', value: 0xFFFF00 }
+    ]
+  },
+  {
+    name: 'Mob ESP',
+    key: 'MOBESP',
+    category: 'RENDER',
+    description: 'Renders bounding boxes and glowing silhouettes on hostile and passive entities',
+    enabled: false,
+    keybind: 'NONE',
+    settings: [
+      { type: 'color', name: 'Hostile Color', value: 0xFF2222 }
+    ]
+  },
+  {
+    name: 'Breadcrumbs',
+    key: 'BREADCRUMBS',
+    category: 'RENDER',
+    description: 'Leaves a smooth luminous 3D trail tracing the path you have traveled',
+    enabled: false,
+    keybind: 'NONE',
+    settings: [
+      { type: 'number', name: 'Trail Length', value: 100.0, min: 20.0, max: 500.0, step: 20.0 },
+      { type: 'color', name: 'Trail Color', value: 0x38BDF8 }
+    ]
+  },
+  {
+    name: 'Fullbright',
+    key: 'FULLBRIGHT',
+    category: 'RENDER',
+    description: 'Provides permanent maximum night vision gamma without needing potions',
+    enabled: true,
+    keybind: 'B',
+    settings: [
+      { type: 'number', name: 'Gamma Multiplier', value: 15.0, min: 1.0, max: 20.0, step: 1.0 }
+    ]
+  },
+  {
+    name: 'NoRender',
+    key: 'NORENDER',
+    category: 'RENDER',
+    description: 'Disables screen shake, rain, thunderstorm, blinding darkness, fire overlay, and explosion dust',
+    enabled: true,
+    keybind: 'NONE',
+    settings: [
+      { type: 'boolean', name: 'Rain', value: true },
+      { type: 'boolean', name: 'Thunderstorm', value: true },
+      { type: 'boolean', name: 'Clouds', value: true },
+      { type: 'boolean', name: 'Fire Overlay', value: true },
+      { type: 'boolean', name: 'Blindness & Darkness', value: true },
+      { type: 'boolean', name: 'Totem Animation', value: false },
+      { type: 'boolean', name: 'Explosion Smoke / Dust', value: true }
+    ]
+  },
+  {
+    name: 'Freecam',
+    key: 'FREECAM',
+    category: 'RENDER',
+    description: 'Detaches camera from player body to freely scout through underground caverns & bases',
+    enabled: false,
+    keybind: 'U',
+    settings: [
+      { type: 'number', name: 'Flight Speed', value: 1.5, min: 0.2, max: 5.0, step: 0.1 },
+      { type: 'boolean', name: 'Freeze Player Movement', value: true }
+    ]
+  },
+  {
+    name: 'Target HUD',
+    key: 'TARGETHUD',
+    category: 'RENDER',
+    description: 'Displays a glassmorphic HUD showing the targeted enemy\'s health bar, ping, distance, and armor durability',
+    enabled: true,
+    keybind: 'NONE',
+    settings: [
+      { type: 'number', name: 'X', value: 400.0, min: 0.0, max: 1920.0, step: 10.0 },
+      { type: 'number', name: 'Y', value: 300.0, min: 0.0, max: 1080.0, step: 10.0 }
+    ]
+  },
+
+  // ==================== MISC ====================
+  {
+    name: 'Scaffold',
+    key: 'SCAFFOLD',
+    category: 'MISC',
+    description: 'Bridges blocks under your feet automatically with sprint support and tower modes',
+    enabled: false,
+    keybind: 'X',
+    settings: [
+      { type: 'boolean', name: 'Sprint Scaffold', value: true },
+      { type: 'boolean', name: 'Tower Mode', value: true },
+      { type: 'boolean', name: 'Down Scaffold', value: false },
+      { type: 'number', name: 'Place Delay (ms)', value: 0.0, min: 0.0, max: 100.0, step: 5.0 }
+    ]
+  },
+  {
+    name: 'SafeWalk',
+    key: 'SAFEWALK',
+    category: 'MISC',
+    description: 'Prevents player from walking or slipping off edge blocks over lethal drops and lava',
+    enabled: false,
+    keybind: 'NONE',
+    settings: [
+      { type: 'boolean', name: 'Sneak at Edge', value: true }
+    ]
+  },
+  {
+    name: 'Auto Sprint',
+    key: 'AUTOSPRINT',
+    category: 'MISC',
+    description: 'Keeps sprinting active continuously whenever moving forward',
+    enabled: true,
+    keybind: 'NONE',
+    settings: [
+      { type: 'boolean', name: 'Omni Sprint', value: true }
+    ]
+  },
+  {
+    name: 'AutoArmor',
+    key: 'AUTOARMOR',
+    category: 'MISC',
+    description: 'Automatically analyzes inventory and equips the highest protection armor pieces',
+    enabled: true,
+    keybind: 'NONE',
+    settings: [
+      { type: 'number', name: 'Equip Delay (ms)', value: 60.0, min: 0.0, max: 200.0, step: 10.0 },
+      { type: 'boolean', name: 'Prefer Elytra', value: false }
+    ]
+  },
+  {
+    name: 'NameProtect',
+    key: 'NAMEPROTECT',
+    category: 'MISC',
+    description: 'Replaces your real Minecraft gamertag and friends\' names locally with custom aliases for streaming',
+    enabled: false,
+    keybind: 'NONE',
+    settings: [
+      { type: 'string', name: 'Fake Name', value: 'FlowUser' },
+      { type: 'boolean', name: 'Protect Friends', value: true }
+    ]
+  },
+  {
+    name: 'Fast Place',
+    key: 'FASTPLACE',
+    category: 'MISC',
+    description: 'Removes the 4-tick right-click delay for lightning fast block and item placement',
+    enabled: true,
+    keybind: 'NONE',
+    settings: [
+      { type: 'number', name: 'Tick Delay', value: 0.0, min: 0.0, max: 3.0, step: 1.0 },
+      { type: 'boolean', name: 'Blocks Only', value: false },
+      { type: 'boolean', name: 'Projectiles Only', value: false }
+    ]
+  },
+  {
+    name: 'Fast Ladder',
+    key: 'FASTLADDER',
+    category: 'MISC',
+    description: 'Climbs up and down ladders and vines at multiplied velocity',
+    enabled: false,
+    keybind: 'NONE',
+    settings: [
+      { type: 'number', name: 'Ascend Speed', value: 2.2, min: 1.0, max: 5.0, step: 0.2 }
+    ]
+  },
+  {
+    name: 'Key Pearl',
+    key: 'KEYPEARL',
+    category: 'MISC',
+    description: 'Instantly throws an ender pearl on hotkey press without manual hotbar swapping',
+    enabled: false,
+    keybind: 'NONE',
+    settings: [
+      { type: 'boolean', name: 'Silent Hotbar Swap', value: true }
+    ]
+  },
+  {
+    name: 'ElytraFly',
+    key: 'ELYTRAFLY',
+    category: 'MISC',
+    description: 'Glide effortlessly through the air with pitch-independent velocity and firework bypass',
+    enabled: false,
+    keybind: 'R',
+    settings: [
+      { type: 'number', name: 'Horizontal Speed', value: 2.5, min: 0.5, max: 8.0, step: 0.5 },
+      { type: 'number', name: 'Vertical Speed', value: 1.2, min: 0.2, max: 4.0, step: 0.2 },
+      { type: 'boolean', name: 'Infinite Glide', value: true },
+      { type: 'boolean', name: 'Anti Crash', value: true }
+    ]
+  },
+  {
+    name: 'Weather Alert',
+    key: 'WEATHERALERT',
+    category: 'MISC',
+    description: 'Sends instant alerts right before rain or thunderstorms hit so you can use Riptide trident',
+    enabled: true,
+    keybind: 'NONE',
+    settings: [
+      { type: 'boolean', name: 'Chat Alert', value: true },
+      { type: 'boolean', name: 'Sound Alert', value: true }
+    ]
+  },
+  {
+    name: 'Auto Tool',
+    key: 'AUTOTOOL',
+    category: 'MISC',
+    description: 'Automatically switches to the fastest tool in hotbar before breaking any block',
+    enabled: true,
+    keybind: 'NONE',
+    settings: [
+      { type: 'boolean', name: 'Switch Back to Weapon', value: true },
+      { type: 'boolean', name: 'Save Tool Durability', value: true }
+    ]
+  },
+  {
+    name: 'Auto Mine',
+    key: 'AUTOMINE',
+    category: 'MISC',
+    description: 'Keeps breaking target blocks continuously without holding down left mouse click',
+    enabled: false,
+    keybind: 'NONE',
+    settings: [
+      { type: 'boolean', name: 'Packet Mining', value: false }
+    ]
+  },
+  {
+    name: 'Auto Eat',
+    key: 'AUTOEAT',
+    category: 'MISC',
+    description: 'Automatically pauses and eats food from offhand/hotbar when hunger falls below threshold',
+    enabled: true,
+    keybind: 'NONE',
+    settings: [
+      { type: 'number', name: 'Hunger Threshold', value: 14.0, min: 6.0, max: 19.0, step: 1.0 },
+      { type: 'boolean', name: 'Prefer Golden Apples', value: true }
+    ]
+  },
+  {
+    name: 'Auto Steal',
+    key: 'AUTOSTEAL',
+    category: 'MISC',
+    description: 'Instantly dumps valuable items from chests and shulkers into inventory upon opening',
+    enabled: false,
+    keybind: 'NONE',
+    settings: [
+      { type: 'number', name: 'Slot Delay (ms)', value: 25.0, min: 0.0, max: 150.0, step: 5.0 },
+      { type: 'boolean', name: 'Valuables Only', value: true },
+      { type: 'boolean', name: 'Auto Close', value: true }
+    ]
+  },
+  {
+    name: 'Auto Web',
+    key: 'AUTOWEB',
+    category: 'MISC',
+    description: 'Instantly places cobwebs at targeted opponent\'s feet to trap them in crystal combat',
+    enabled: false,
+    keybind: 'NONE',
+    settings: [
+      { type: 'number', name: 'Placement Range', value: 4.5, min: 2.0, max: 6.0, step: 0.5 }
+    ]
+  },
+  {
+    name: 'Coords Snapper',
+    key: 'COORDSSNAPPER',
+    category: 'MISC',
+    description: 'Copies current coordinates, dimension, and compass heading to clipboard on hotkey',
+    enabled: false,
+    keybind: 'NONE',
+    settings: [
+      { type: 'boolean', name: 'Send to Party Chat', value: false },
+      { type: 'boolean', name: 'Include Nether Link', value: true }
+    ]
+  },
+  {
+    name: 'Swing Speed',
+    key: 'SWINGSPEED',
+    category: 'MISC',
+    description: 'Modifies hand animation swing speed for satisfying fluid visual feedback',
+    enabled: false,
+    keybind: 'NONE',
+    settings: [
+      { type: 'number', name: 'Speed Multiplier', value: 1.5, min: 0.2, max: 3.0, step: 0.1 }
+    ]
+  },
+
+  // ==================== DONUT (DONUTSMP SUITE) ====================
+  {
+    name: 'Sus Chunk Finder',
+    key: 'SUSCHUNKFINDER',
+    category: 'DONUT',
+    description: 'Multi-signal intelligent chunk scanner pinpointing underground bases, stashes, rotated deepslate & obsidian vaults',
+    enabled: true,
+    keybind: 'NONE',
+    highlight: true,
+    settings: [
+      { type: 'number', name: 'Sim Distance', value: 4.0, min: 1.0, max: 32.0, step: 1.0 },
+      { type: 'number', name: 'Sensitivity', value: 5.0, min: 1.0, max: 20.0, step: 1.0 },
+      { type: 'boolean', name: 'Tracers', value: true },
+      { type: 'boolean', name: 'Nametags', value: true },
+      { type: 'boolean', name: 'Notification', value: true },
+      { type: 'color', name: 'Color', value: 0x0078FF },
+      { type: 'boolean', name: 'Underground Containers', value: true },
+      { type: 'boolean', name: 'Armor Stands & Frames', value: true },
+      { type: 'boolean', name: 'Workstations & Beds', value: true },
+      { type: 'boolean', name: 'Obsidian & Portals', value: true },
+      { type: 'boolean', name: 'Rotated Deepslate', value: true },
+      { type: 'boolean', name: 'Redstone Machinery', value: true },
+      { type: 'boolean', name: 'Underground Lights', value: true },
+      { type: 'boolean', name: 'Villagers & Tamed Mobs', value: true },
+      { type: 'boolean', name: 'Multi-Geode Hubs', value: true },
+      { type: 'number', name: 'Min Geode Mass', value: 260.0, min: 150.0, max: 800.0, step: 20.0 },
+      { type: 'boolean', name: 'Kelp Farms', value: false },
+      { type: 'boolean', name: 'Cave Vines', value: false },
+      { type: 'boolean', name: 'Vines', value: false },
+      { type: 'boolean', name: 'Bamboo', value: false },
+      { type: 'boolean', name: 'Bee Nests', value: false }
+    ]
+  },
+  {
+    name: 'Staff Detector',
+    key: 'STAFFDETECTOR',
+    category: 'DONUT',
+    description: 'Detects staff members joining, spectating in vanish, or switching gamemodes with auto-disconnect safety',
+    enabled: true,
+    keybind: 'NONE',
+    settings: [
+      { type: 'boolean', name: 'Auto Disconnect', value: false },
+      { type: 'boolean', name: 'Audio Alarm', value: true },
+      { type: 'boolean', name: 'Vanish Detection', value: true },
+      { type: 'boolean', name: 'Log to Discord', value: false }
+    ]
+  },
+  {
+    name: 'Stash Finder',
+    key: 'STASHFINDER',
+    category: 'DONUT',
+    description: 'Flags dense clusters of chests, shulker boxes, and hoppers indicating major player stashes',
+    enabled: true,
+    keybind: 'NONE',
+    settings: [
+      { type: 'number', name: 'Min Containers', value: 12.0, min: 4.0, max: 64.0, step: 2.0 },
+      { type: 'number', name: 'Scan Radius', value: 128.0, min: 32.0, max: 512.0, step: 16.0 },
+      { type: 'boolean', name: 'Tracer to Stash', value: true },
+      { type: 'boolean', name: 'Log Coordinates', value: true }
+    ]
+  },
+  {
+    name: 'Netherite Finder',
+    key: 'NETHERITEFINDER',
+    category: 'DONUT',
+    description: 'Highlights unmined Ancient Debris blocks in the Nether with box outlines and tracer lines',
+    enabled: false,
+    keybind: 'NONE',
+    settings: [
+      { type: 'number', name: 'Scan Radius', value: 64.0, min: 16.0, max: 128.0, step: 8.0 },
+      { type: 'color', name: 'Color', value: 0x8B5A2B },
+      { type: 'boolean', name: 'Tracers', value: true }
+    ]
+  },
+  {
+    name: 'Shulker Dropper',
+    key: 'SHULKERDROPPER',
+    category: 'DONUT',
+    description: 'Rapidly dumps shulker box contents onto ground for instantaneous stash looting during raids',
+    enabled: false,
+    keybind: 'NONE',
+    settings: [
+      { type: 'number', name: 'Drop Speed (ms)', value: 10.0, min: 0.0, max: 100.0, step: 5.0 }
+    ]
+  },
+  {
+    name: 'Redstone ESP',
+    key: 'REDSTONEESP',
+    category: 'DONUT',
+    description: 'Highlights underground observers, pistons, repeaters, and redstone clocks used in hidden bases',
+    enabled: false,
+    keybind: 'NONE',
+    settings: [
+      { type: 'color', name: 'Color', value: 0xFF2222 },
+      { type: 'boolean', name: 'Tracers', value: false }
+    ]
+  },
+
+  // ==================== CLIENT ====================
+  {
+    name: 'Flow+',
+    key: 'FLOWPLUS',
+    category: 'CLIENT',
+    description: 'Customizable persistent in-game HUD overlay displaying Watermark, FPS, Ping, Biome, and Coords',
+    enabled: true,
+    keybind: 'NONE',
+    settings: [
+      { type: 'boolean', name: 'Watermark', value: true },
+      { type: 'boolean', name: 'FPS & Ping', value: true },
+      { type: 'boolean', name: 'Coordinates', value: true },
+      { type: 'boolean', name: 'Nether Coords', value: false },
+      { type: 'boolean', name: 'Real Time', value: true },
+      { type: 'boolean', name: 'Biome & Facing', value: true },
+      { type: 'boolean', name: 'Radar', value: false }
+    ]
+  },
+  {
+    name: 'HUD',
+    key: 'HUD',
+    category: 'CLIENT',
+    description: 'Renders the live animated active module list with customizable color gradients and font styling',
+    enabled: true,
+    keybind: 'NONE',
+    settings: [
+      { type: 'boolean', name: 'Rainbow Gradient', value: false },
+      { type: 'color', name: 'Accent Color', value: 0x38BDF8 },
+      { type: 'boolean', name: 'Show Suffixes', value: true },
+      { type: 'boolean', name: 'Sound on Toggle', value: true }
+    ]
+  },
+  {
+    name: 'Spotify HUD',
+    key: 'SPOTIFYHUD',
+    category: 'CLIENT',
+    description: 'Displays your currently playing Spotify track with album art and interactive media controls',
+    enabled: true,
+    keybind: 'NONE',
+    settings: [
+      { type: 'boolean', name: 'Spotify Icon', value: true },
+      { type: 'color', name: 'Accent Color', value: 0x1DB954 }
+    ]
+  },
+  {
+    name: 'DiscordRPC',
+    key: 'DISCORDRPC',
+    category: 'CLIENT',
+    description: 'Displays "Playing Flow Client 1.21.11" with the elegant wave banner on your Discord profile',
+    enabled: true,
+    keybind: 'NONE',
+    settings: [
+      { type: 'boolean', name: 'Show Server / World', value: true },
+      { type: 'boolean', name: 'Show Elapsed Time', value: true }
+    ]
+  },
+  {
+    name: 'Friends & Configs',
+    key: 'CONFIGSYSTEM',
+    category: 'CLIENT',
+    description: 'Quickly save, load, and manage client configuration profiles and bypass presets',
+    enabled: true,
+    keybind: 'NONE',
+    settings: [
+      { type: 'boolean', name: 'Auto Save on Close', value: true },
+      { type: 'button', name: 'Save Default Config' },
+      { type: 'button', name: 'Load Default Config' }
+    ]
+  }
+];
+
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = { FLOW_CATEGORIES, FLOW_MODULES };
+}
+
+
+// === js/flowCanvas.js ===
+// Flow Interactive Generative Ribbon & Particle Wave System
+// Recreating the exact aesthetic from the reference image with interactive physics
+class FlowHeroCanvas {
+  constructor(canvasId) {
+    this.canvas = document.getElementById(canvasId);
+    if (!this.canvas) return;
+    this.ctx = this.canvas.getContext('2d');
+
+    this.width = 0;
+    this.height = 0;
+    this.dpr = window.devicePixelRatio || 1;
+
+    // Simulation params
+    this.time = 0;
+    this.speed = 0.008;
+    this.lineCount = 42; // number of wireframe ribbon strands
+    this.amplitude = 130;
+    this.wavelength = 0.0025;
+    this.glowColor = 'rgba(255, 255, 255, 0.7)';
+    this.dimColor = 'rgba(220, 230, 245, 0.15)';
+
+    // Mouse tracking & physics
+    this.mouse = {
+      x: -1000,
+      y: -1000,
+      targetX: -1000,
+      targetY: -1000,
+      radius: 200,
+      down: false,
+      speed: 0,
+      prevX: 0,
+      prevY: 0
+    };
+
+    // Particles constellation
+    this.particles = [];
+    this.particleCount = 120;
+
+    // Click ripples
+    this.ripples = [];
+
+    this.init();
+  }
+
+  init() {
+    this.resize();
+    window.addEventListener('resize', () => this.resize());
+
+    // Mouse & Touch events
+    const updateCoords = (e) => {
+      const rect = this.canvas.getBoundingClientRect();
+      const clientX = e.clientX || (e.touches && e.touches[0] ? e.touches[0].clientX : -1000);
+      const clientY = e.clientY || (e.touches && e.touches[0] ? e.touches[0].clientY : -1000);
+      this.mouse.targetX = (clientX - rect.left) * (this.canvas.width / rect.width / this.dpr);
+      this.mouse.targetY = (clientY - rect.top) * (this.canvas.height / rect.height / this.dpr);
+    };
+
+    window.addEventListener('mousemove', (e) => {
+      updateCoords(e);
+      const dx = this.mouse.targetX - this.mouse.prevX;
+      const dy = this.mouse.targetY - this.mouse.prevY;
+      this.mouse.speed = Math.min(Math.sqrt(dx * dx + dy * dy), 40);
+      this.mouse.prevX = this.mouse.targetX;
+      this.mouse.prevY = this.mouse.targetY;
+    });
+
+    window.addEventListener('touchstart', (e) => updateCoords(e), { passive: true });
+    window.addEventListener('touchmove', (e) => updateCoords(e), { passive: true });
+
+    this.canvas.addEventListener('mousedown', (e) => {
+      this.mouse.down = true;
+      this.createRipple(this.mouse.x, this.mouse.y);
+      if (window.flowAudio) window.flowAudio.playClick(800, 0.05, 'sine');
+    });
+
+    window.addEventListener('mouseup', () => {
+      this.mouse.down = false;
+    });
+
+    this.initParticles();
+    this.animate();
+  }
+
+  resize() {
+    const parent = this.canvas.parentElement;
+    this.width = parent ? parent.clientWidth : window.innerWidth;
+    this.height = parent ? parent.clientHeight : window.innerHeight;
+
+    this.canvas.width = this.width * this.dpr;
+    this.canvas.height = this.height * this.dpr;
+    this.canvas.style.width = `${this.width}px`;
+    this.canvas.style.height = `${this.height}px`;
+
+    this.ctx.scale(this.dpr, this.dpr);
+    this.initParticles();
+  }
+
+  initParticles() {
+    this.particles = [];
+    for (let i = 0; i < this.particleCount; i++) {
+      this.particles.push({
+        x: Math.random() * this.width,
+        y: Math.random() * this.height,
+        originX: Math.random() * this.width,
+        originY: Math.random() * this.height,
+        vx: (Math.random() - 0.5) * 0.6,
+        vy: (Math.random() - 0.5) * 0.6,
+        radius: Math.random() * 2.2 + 0.6,
+        alpha: Math.random() * 0.65 + 0.2,
+        baseAlpha: Math.random() * 0.65 + 0.2,
+        phase: Math.random() * Math.PI * 2,
+        orbitSpeed: (Math.random() * 0.02 + 0.005) * (Math.random() > 0.5 ? 1 : -1)
+      });
+    }
+  }
+
+  createRipple(x, y) {
+    this.ripples.push({
+      x: x,
+      y: y,
+      radius: 0,
+      maxRadius: 280,
+      alpha: 0.8,
+      speed: 6
+    });
+  }
+
+  animate() {
+    requestAnimationFrame(() => this.animate());
+
+    this.time += this.speed;
+
+    // Smooth mouse interpolation
+    this.mouse.x += (this.mouse.targetX - this.mouse.x) * 0.12;
+    this.mouse.y += (this.mouse.targetY - this.mouse.y) * 0.12;
+    this.mouse.speed *= 0.92;
+
+    this.ctx.clearRect(0, 0, this.width, this.height);
+
+    // 1. Draw subtle background radial dark vignette
+    const bgGradient = this.ctx.createRadialGradient(
+      this.width / 2, this.height / 2, 40,
+      this.width / 2, this.height / 2, Math.max(this.width, this.height) * 0.7
+    );
+    bgGradient.addColorStop(0, 'rgba(18, 16, 28, 0.4)');
+    bgGradient.addColorStop(0.6, 'rgba(8, 7, 13, 0.8)');
+    bgGradient.addColorStop(1, 'rgba(4, 4, 7, 1)');
+    this.ctx.fillStyle = bgGradient;
+    this.ctx.fillRect(0, 0, this.width, this.height);
+
+    // 2. Draw Ripples
+    this.drawRipples();
+
+    // 3. Draw The Flow Harmonic Wireframe Ribbon (Reference Image Replica)
+    this.drawFlowRibbon();
+
+    // 4. Draw Interactive Particles & Constellations
+    this.drawParticles();
+  }
+
+  drawFlowRibbon() {
+    const ctx = this.ctx;
+    const centerY = this.height / 2;
+    const stepX = 8;
+    const numPoints = Math.ceil(this.width / stepX) + 2;
+
+    ctx.save();
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+
+    for (let i = 0; i < this.lineCount; i++) {
+      const lineProgress = i / (this.lineCount - 1); // 0 to 1
+      const offsetPhase = lineProgress * Math.PI * 1.5;
+      const strandAmp = this.amplitude * (0.55 + 0.45 * Math.sin(lineProgress * Math.PI));
+
+      // Calculate alpha based on distance from ribbon center
+      const centerFactor = Math.sin(lineProgress * Math.PI);
+      const alpha = Math.max(0.04, centerFactor * 0.48);
+      const lineWidth = 0.8 + centerFactor * 0.8;
+
+      ctx.beginPath();
+      ctx.lineWidth = lineWidth;
+      ctx.strokeStyle = `rgba(235, 240, 255, ${alpha})`;
+
+      for (let p = 0; p < numPoints; p++) {
+        const x = (p - 1) * stepX;
+        
+        // Base sine wave modulation
+        const wave1 = Math.sin(x * this.wavelength + this.time + offsetPhase);
+        const wave2 = Math.sin(x * this.wavelength * 2.1 - this.time * 1.3 + offsetPhase * 0.7) * 0.4;
+        const wave3 = Math.cos(x * this.wavelength * 0.5 + this.time * 0.7) * 0.3;
+
+        // Envelope shape to create the organic teardrop loop in the center
+        const centerDist = (x - this.width / 2) / (this.width / 2);
+        const centerBell = Math.exp(-centerDist * centerDist * 3.2); // high in center
+        const wingDamping = Math.exp(-centerDist * centerDist * 0.8);
+
+        // Center loop deformation (recreating the loop from image)
+        const loopDeform = Math.sin(centerDist * Math.PI * 1.8 + offsetPhase * 1.2) * (strandAmp * 1.2) * centerBell;
+
+        let y = centerY + (wave1 + wave2 + wave3) * strandAmp * wingDamping + loopDeform;
+
+        // Interactive mouse distortion
+        if (this.mouse.x > -500) {
+          const mdx = x - this.mouse.x;
+          const mdy = y - this.mouse.y;
+          const mdist = Math.sqrt(mdx * mdx + mdy * mdy);
+          if (mdist < this.mouse.radius) {
+            const force = (1 - mdist / this.mouse.radius) * 45;
+            const pushDir = mdy > 0 ? 1 : -1;
+            y += pushDir * force * Math.sin((mdist / this.mouse.radius) * Math.PI);
+          }
+        }
+
+        // Apply ripples distortion
+        for (const rip of this.ripples) {
+          const rdx = x - rip.x;
+          const rdy = y - rip.y;
+          const rdist = Math.sqrt(rdx * rdx + rdy * rdy);
+          const diff = Math.abs(rdist - rip.radius);
+          if (diff < 40) {
+            const ripForce = Math.sin((diff / 40) * Math.PI) * (1 - rip.radius / rip.maxRadius) * 22;
+            y += ripForce;
+          }
+        }
+
+        if (p === 0) {
+          ctx.moveTo(x, y);
+        } else {
+          ctx.lineTo(x, y);
+        }
+      }
+
+      ctx.stroke();
+    }
+
+    ctx.restore();
+  }
+
+  drawParticles() {
+    const ctx = this.ctx;
+    ctx.save();
+
+    for (let i = 0; i < this.particles.length; i++) {
+      const p = this.particles[i];
+
+      // Natural movement
+      p.x += p.vx;
+      p.y += p.vy;
+
+      // Wrap around edges
+      if (p.x < 0) p.x = this.width;
+      if (p.x > this.width) p.x = 0;
+      if (p.y < 0) p.y = this.height;
+      if (p.y > this.height) p.y = 0;
+
+      // Particle oscillation
+      p.phase += p.orbitSpeed;
+      const pulse = Math.sin(p.phase);
+
+      // Mouse attraction / repulsion
+      let currentAlpha = p.baseAlpha + pulse * 0.15;
+      let targetX = p.x;
+      let targetY = p.y;
+
+      if (this.mouse.x > -500) {
+        const dx = this.mouse.x - p.x;
+        const dy = this.mouse.y - p.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+
+        if (dist < 180) {
+          const factor = (1 - dist / 180);
+          // Gently push particles on mouse movement
+          targetX -= (dx / dist) * factor * 25;
+          targetY -= (dy / dist) * factor * 25;
+          currentAlpha = Math.min(1.0, currentAlpha + factor * 0.6);
+        }
+      }
+
+      // Draw particle dot
+      ctx.beginPath();
+      ctx.arc(targetX, targetY, p.radius + Math.max(0, pulse * 0.4), 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(255, 255, 255, ${Math.max(0.1, currentAlpha)})`;
+      ctx.shadowColor = 'rgba(255, 255, 255, 0.6)';
+      ctx.shadowBlur = 6;
+      ctx.fill();
+      ctx.shadowBlur = 0;
+
+      // Draw faint constellation lines between nearby particles
+      for (let j = i + 1; j < this.particles.length; j++) {
+        const p2 = this.particles[j];
+        const dist = Math.hypot(p.x - p2.x, p.y - p2.y);
+        if (dist < 75) {
+          const lineAlpha = (1 - dist / 75) * 0.18;
+          ctx.beginPath();
+          ctx.moveTo(p.x, p.y);
+          ctx.lineTo(p2.x, p2.y);
+          ctx.strokeStyle = `rgba(255, 255, 255, ${lineAlpha})`;
+          ctx.lineWidth = 0.5;
+          ctx.stroke();
+        }
+      }
+    }
+
+    ctx.restore();
+  }
+
+  drawRipples() {
+    const ctx = this.ctx;
+    for (let i = this.ripples.length - 1; i >= 0; i--) {
+      const rip = this.ripples[i];
+      rip.radius += rip.speed;
+      rip.alpha = (1 - rip.radius / rip.maxRadius) * 0.6;
+
+      if (rip.radius >= rip.maxRadius) {
+        this.ripples.splice(i, 1);
+        continue;
+      }
+
+      ctx.save();
+      ctx.beginPath();
+      ctx.arc(rip.x, rip.y, rip.radius, 0, Math.PI * 2);
+      ctx.strokeStyle = `rgba(180, 220, 255, ${rip.alpha})`;
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+      ctx.restore();
+    }
+  }
+
+  // Interactive controls
+  setSpeed(val) { this.speed = val; }
+  setDensity(val) { this.lineCount = val; }
+  setAmplitude(val) { this.amplitude = val; }
+}
+
+window.FlowHeroCanvas = FlowHeroCanvas;
+
+
+// === js/radarSim.js ===
+// DonutSMP Sus Chunk Finder Interactive Scanner & Radar Simulator
+// Implements the exact scoring, cluster logic & tracer rendering of Flow's SusChunkFinder.java
+
+class DonutChunkRadarSim {
+  constructor(canvasId, infoPanelId) {
+    this.canvas = document.getElementById(canvasId);
+    this.infoPanel = document.getElementById(infoPanelId);
+    if (!this.canvas) return;
+
+    this.ctx = this.canvas.getContext('2d');
+    this.dpr = window.devicePixelRatio || 1;
+    this.width = 0;
+    this.height = 0;
+
+    // Player State in DonutSMP
+    this.player = {
+      x: 0,
+      z: 0,
+      chunkX: 0,
+      chunkZ: 0,
+      heading: 0,
+      speed: 0.8,
+      flying: true
+    };
+
+    // Scan settings matching SusChunkFinder
+    this.simDistance = 4;
+    this.sensitivity = 5;
+    this.tracers = true;
+    this.color = '#0078FF';
+
+    // World chunk generation
+    this.chunks = new Map();
+    this.flaggedBases = [];
+    this.topBase = null;
+    this.lastPingTime = 0;
+
+    this.init();
+  }
+
+  init() {
+    this.resize();
+    window.addEventListener('resize', () => this.resize());
+    this.generateSimWorld();
+
+    this.canvas.addEventListener('click', (e) => {
+      const rect = this.canvas.getBoundingClientRect();
+      const clickX = (e.clientX - rect.left) * (this.width / rect.width);
+      const clickZ = (e.clientY - rect.top) * (this.height / rect.height);
+
+      // Convert pixel coords to world chunk
+      const centerPxX = this.width / 2;
+      const centerPxZ = this.height / 2;
+      const zoom = 14;
+
+      const targetChunkX = Math.round(this.player.chunkX + (clickX - centerPxX) / zoom);
+      const targetChunkZ = Math.round(this.player.chunkZ + (clickZ - centerPxZ) / zoom);
+
+      // Spawn a suspicious vault at click location
+      this.injectSuspiciousBase(targetChunkX, targetChunkZ);
+      if (window.flowAudio) window.flowAudio.playRadarPing();
+    });
+
+    this.animate();
+  }
+
+  resize() {
+    const parent = this.canvas.parentElement;
+    this.width = parent ? parent.clientWidth : 600;
+    this.height = parent ? parent.clientHeight : 450;
+
+    this.canvas.width = this.width * this.dpr;
+    this.canvas.height = this.height * this.dpr;
+    this.canvas.style.width = `${this.width}px`;
+    this.canvas.style.height = `${this.height}px`;
+
+    this.ctx.scale(this.dpr, this.dpr);
+  }
+
+  generateSimWorld() {
+    // Inject realistic DonutSMP bases at varied distances
+    const prebakedBases = [
+      { cx: 8, cz: -6, type: 'Obsidian Vault & Stash', score: 38, reason: 'obsidian base (18) + containers (14)', y: -24 },
+      { cx: -12, cz: 9, type: 'Dupe / Redstone Stash', score: 26, reason: 'redstone (12) + containers (8)', y: 12 },
+      { cx: 16, cz: 14, type: 'Underground Villager Trading Hall', score: 42, reason: 'villagers (8) + workstations (12) + beds (6)', y: 32 },
+      { cx: -7, cz: -11, type: 'Secret Clan Vault (Rotated Deepslate)', score: 32, reason: 'rotated deepslate (14) + armor stands (4)', y: -48 },
+      { cx: 3, cz: -18, type: 'Mega Geode Farm Hub', score: 28, reason: 'mega geode hub (3+ geodes)', y: -16 }
+    ];
+
+    prebakedBases.forEach(b => {
+      this.chunks.set(`${b.cx},${b.cz}`, {
+        cx: b.cx,
+        cz: b.cz,
+        worldX: b.cx * 16 + 8,
+        worldZ: b.cz * 16 + 8,
+        worldY: b.y,
+        isBase: true,
+        baseType: b.type,
+        score: b.score,
+        reason: b.reason,
+        containers: Math.floor(b.score / 2),
+        stands: 2,
+        scanned: false
+      });
+    });
+  }
+
+  injectSuspiciousBase(cx, cz) {
+    const reasons = [
+      { type: 'Hidden DonutSMP Stash Vault', reason: 'containers (24) + obsidian base (8)', score: 45, y: -38 },
+      { type: 'Underground AFK Farm', reason: 'redstone (16) + rotated deepslate (6)', score: 29, y: 18 },
+      { type: 'Armor Stand & Trophy Room', reason: 'armor stands (6) + item frames (12)', score: 34, y: 42 }
+    ];
+    const pick = reasons[Math.floor(Math.random() * reasons.length)];
+
+    this.chunks.set(`${cx},${cz}`, {
+      cx: cx,
+      cz: cz,
+      worldX: cx * 16 + 8,
+      worldZ: cz * 16 + 8,
+      worldY: pick.y,
+      isBase: true,
+      baseType: pick.type,
+      score: pick.score,
+      reason: pick.reason,
+      containers: 16,
+      stands: 4,
+      scanned: true
+    });
+  }
+
+  animate() {
+    requestAnimationFrame(() => this.animate());
+
+    // Update player trajectory (simulating Elytra flight)
+    if (this.player.flying) {
+      this.player.heading += 0.008;
+      this.player.x += Math.cos(this.player.heading) * this.player.speed;
+      this.player.z += Math.sin(this.player.heading) * this.player.speed;
+      this.player.chunkX = this.player.x / 16;
+      this.player.chunkZ = this.player.z / 16;
+    }
+
+    this.scanNearbyChunks();
+    this.draw();
+    this.updateInfoHUD();
+  }
+
+  scanNearbyChunks() {
+    const scanRadius = 14;
+    this.flaggedBases = [];
+    let highestScore = -1;
+    let top = null;
+
+    const pChunkX = Math.round(this.player.chunkX);
+    const pChunkZ = Math.round(this.player.chunkZ);
+
+    for (let dx = -scanRadius; dx <= scanRadius; dx++) {
+      for (let dz = -scanRadius; dz <= scanRadius; dz++) {
+        const cx = pChunkX + dx;
+        const cz = pChunkZ + dz;
+        const key = `${cx},${cz}`;
+
+        // Chebyshev distance check like Minecraft client
+        const dist = Math.max(Math.abs(dx), Math.abs(dz));
+
+        if (this.chunks.has(key)) {
+          const chunkData = this.chunks.get(key);
+          chunkData.scanned = true;
+
+          if (chunkData.score >= this.sensitivity) {
+            this.flaggedBases.push(chunkData);
+            if (chunkData.score > highestScore) {
+              highestScore = chunkData.score;
+              top = chunkData;
+            }
+          }
+        }
+      }
+    }
+
+    this.topBase = top;
+
+    // Periodic radar notification ping
+    const now = Date.now();
+    if (this.topBase && now - this.lastPingTime > 6000) {
+      this.lastPingTime = now;
+      if (window.flowAudio) window.flowAudio.playRadarPing();
+    }
+  }
+
+  draw() {
+    const ctx = this.ctx;
+    ctx.clearRect(0, 0, this.width, this.height);
+
+    const centerX = this.width / 2;
+    const centerZ = this.height / 2;
+    const zoom = 14; // pixels per chunk
+
+    // Draw Dark Radar Grid
+    ctx.save();
+    ctx.strokeStyle = 'rgba(255, 255, 255, 0.05)';
+    ctx.lineWidth = 1;
+
+    const gridExtent = 22;
+    for (let i = -gridExtent; i <= gridExtent; i++) {
+      const offsetX = ((i - (this.player.chunkX % 1)) * zoom) + centerX;
+      const offsetZ = ((i - (this.player.chunkZ % 1)) * zoom) + centerZ;
+
+      ctx.beginPath();
+      ctx.moveTo(offsetX, 0);
+      ctx.lineTo(offsetX, this.height);
+      ctx.stroke();
+
+      ctx.beginPath();
+      ctx.moveTo(0, offsetZ);
+      ctx.lineTo(this.width, offsetZ);
+      ctx.stroke();
+    }
+
+    // Draw Simulation Distance Ring
+    ctx.beginPath();
+    ctx.arc(centerX, centerZ, this.simDistance * zoom, 0, Math.PI * 2);
+    ctx.strokeStyle = 'rgba(56, 189, 248, 0.35)';
+    ctx.lineWidth = 1.5;
+    ctx.setLineDash([4, 4]);
+    ctx.stroke();
+    ctx.setLineDash([]);
+
+    // Draw Scanning Cone Sweep
+    const sweepAngle = (Date.now() / 800) % (Math.PI * 2);
+    const sweepGrad = ctx.createRadialGradient(centerX, centerZ, 10, centerX, centerZ, 160);
+    sweepGrad.addColorStop(0, 'rgba(0, 120, 255, 0.18)');
+    sweepGrad.addColorStop(1, 'rgba(0, 120, 255, 0.0)');
+
+    ctx.beginPath();
+    ctx.moveTo(centerX, centerZ);
+    ctx.arc(centerX, centerZ, 160, sweepAngle - 0.4, sweepAngle);
+    ctx.closePath();
+    ctx.fillStyle = sweepGrad;
+    ctx.fill();
+
+    // Draw Scanned Chunks and Suspicious Flagged Bases
+    this.chunks.forEach(chunk => {
+      const px = centerX + (chunk.cx - this.player.chunkX) * zoom;
+      const pz = centerZ + (chunk.cz - this.player.chunkZ) * zoom;
+
+      if (px < -30 || px > this.width + 30 || pz < -30 || pz > this.height + 30) return;
+
+      if (chunk.isBase && chunk.scanned) {
+        const isTop = this.topBase && this.topBase.cx === chunk.cx && this.topBase.cz === chunk.cz;
+
+        // Base box
+        ctx.fillStyle = isTop ? 'rgba(239, 68, 68, 0.55)' : 'rgba(0, 120, 255, 0.45)';
+        ctx.strokeStyle = isTop ? '#EF4444' : '#0078FF';
+        ctx.lineWidth = isTop ? 2 : 1.2;
+
+        ctx.fillRect(px - zoom / 2, pz - zoom / 2, zoom, zoom);
+        ctx.strokeRect(px - zoom / 2, pz - zoom / 2, zoom, zoom);
+
+        // Tracer line to player
+        if (this.tracers) {
+          ctx.beginPath();
+          ctx.moveTo(centerX, centerZ);
+          ctx.lineTo(px, pz);
+          ctx.strokeStyle = isTop ? 'rgba(239, 68, 68, 0.75)' : 'rgba(0, 120, 255, 0.4)';
+          ctx.lineWidth = isTop ? 1.8 : 1;
+          ctx.stroke();
+        }
+
+        // Nametag & Signal Reason
+        ctx.fillStyle = '#FFFFFF';
+        ctx.font = '10px JetBrains Mono, monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText(`SCORE: ${chunk.score}`, px, pz - zoom / 2 - 4);
+      }
+    });
+
+    // Draw Player Marker
+    ctx.save();
+    ctx.translate(centerX, centerZ);
+    ctx.rotate(this.player.heading + Math.PI / 2);
+
+    ctx.fillStyle = '#10B981';
+    ctx.shadowColor = '#10B981';
+    ctx.shadowBlur = 10;
+    ctx.beginPath();
+    ctx.moveTo(0, -9);
+    ctx.lineTo(6, 7);
+    ctx.lineTo(0, 4);
+    ctx.lineTo(-6, 7);
+    ctx.closePath();
+    ctx.fill();
+
+    ctx.restore();
+    ctx.restore();
+  }
+
+  updateInfoHUD() {
+    if (!this.infoPanel) return;
+
+    const pX = Math.round(this.player.x);
+    const pZ = Math.round(this.player.z);
+    const flagCount = this.flaggedBases.length;
+
+    let targetHTML = `
+      <div class="radar-status-bar">
+        <span class="status-live-dot"></span>
+        <span class="status-title">SUS CHUNK SCANNER ACTIVE</span>
+        <span class="status-sim-tag">DonutSMP Engine</span>
+      </div>
+
+      <div class="radar-telemetry-grid">
+        <div class="telemetry-card">
+          <span class="telemetry-label">Player Position</span>
+          <span class="telemetry-val">X: ${pX} | Z: ${pZ}</span>
+        </div>
+        <div class="telemetry-card">
+          <span class="telemetry-label">Flagged Targets</span>
+          <span class="telemetry-val highlight-cyan">${flagCount} Bases</span>
+        </div>
+        <div class="telemetry-card">
+          <span class="telemetry-label">Scan Speed</span>
+          <span class="telemetry-val">4 Chunks / Tick</span>
+        </div>
+        <div class="telemetry-card">
+          <span class="telemetry-label">Sensitivity</span>
+          <span class="telemetry-val">Score ≥ ${this.sensitivity}</span>
+        </div>
+      </div>
+    `;
+
+    if (this.topBase) {
+      const dist = Math.round(Math.hypot(this.topBase.worldX - pX, this.topBase.worldZ - pZ));
+      targetHTML += `
+        <div class="radar-target-card">
+          <div class="target-header">
+            <span class="target-badge">TOP CANDIDATE DETECTED</span>
+            <span class="target-dist">${dist}m AWAY</span>
+          </div>
+          <div class="target-type">${this.topBase.baseType}</div>
+          <div class="target-coords">
+            <strong>Coords:</strong> X: ${this.topBase.worldX} &nbsp; Y: ${this.topBase.worldY} &nbsp; Z: ${this.topBase.worldZ}
+          </div>
+          <div class="target-reason">
+            <strong>Detection Signals:</strong> ${this.topBase.reason}
+          </div>
+          <div class="target-actions">
+            <button class="target-btn-copy" onclick="navigator.clipboard.writeText('/tp ${this.topBase.worldX} ${this.topBase.worldY} ${this.topBase.worldZ}'); window.flowClickGUI?.showToast('Coords Copied', 'Copied base coordinates to clipboard!', 0x10B981);">
+              Copy Coordinates
+            </button>
+            <span class="target-score-pill">Score: ${this.topBase.score}</span>
+          </div>
+        </div>
+      `;
+    } else {
+      targetHTML += `
+        <div class="radar-target-card empty-target">
+          <div class="empty-target-title">Scouting chunks...</div>
+          <p>Click anywhere on the radar grid to simulate spawning a hidden underground base!</p>
+        </div>
+      `;
+    }
+
+    this.infoPanel.innerHTML = targetHTML;
+  }
+
+  setSensitivity(val) {
+    this.sensitivity = val;
+  }
+
+  toggleTracers() {
+    this.tracers = !this.tracers;
+    return this.tracers;
+  }
+}
+
+window.DonutChunkRadarSim = DonutChunkRadarSim;
+
+
+// === js/clickgui.js ===
+// Flow Client Interactive ClickGUI Simulator
+// Pixel-perfect replica of Flow Client's Java GUI & Config Engine
+
+class FlowClickGUI {
+  constructor(containerId) {
+    this.container = document.getElementById(containerId);
+    if (!this.container) return;
+
+    this.modules = JSON.parse(JSON.stringify(FLOW_MODULES));
+    this.categories = FLOW_CATEGORIES;
+    this.searchQuery = '';
+    this.activeBindingModule = null;
+    this.draggedPanel = null;
+    this.dragOffset = { x: 0, y: 0 };
+    this.panelPositions = {};
+
+    this.init();
+  }
+
+  init() {
+    this.render();
+    this.attachGlobalListeners();
+    this.updateActiveHUD();
+  }
+
+  render() {
+    this.container.innerHTML = `
+      <div class="flow-gui-workspace" id="flowGuiWorkspace">
+        <!-- In-game HUD Simulator Layer -->
+        <div class="flow-hud-overlay" id="flowHudOverlay">
+          <!-- Flow+ Top Left Watermark -->
+          <div class="flow-hud-watermark" id="hudWatermark">
+            <span class="hud-flow-brand">f l o w</span>
+            <span class="hud-divider">|</span>
+            <span class="hud-stat-badge" id="hudFps">240 FPS</span>
+            <span class="hud-stat-badge" id="hudPing">18ms</span>
+            <span class="hud-stat-badge" id="hudCoords">X: 1,420 Y: 68 Z: -3,890</span>
+          </div>
+
+          <!-- Active Modules List (Top Right) -->
+          <div class="flow-hud-arraylist" id="hudArrayList"></div>
+
+          <!-- Spotify HUD (Bottom Left) -->
+          <div class="flow-hud-spotify" id="hudSpotify">
+            <div class="spotify-art">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.59 14.42c-.18.3-.57.4-.87.21-2.39-1.46-5.4-1.79-8.95-.98-.34.08-.68-.14-.76-.48-.08-.34.14-.68.48-.76 3.9-.89 7.23-.51 9.89 1.14.3.19.4.58.21.87zm1.22-2.72c-.23.37-.72.49-1.09.26-2.73-1.68-6.9-2.17-10.13-1.19-.42.13-.86-.11-.99-.53-.13-.42.11-.86.53-.99 3.69-1.12 8.3-.57 11.42 1.36.37.23.49.72.26 1.09zm.13-2.83C14.67 9.07 9.28 8.89 6.17 9.84c-.49.15-1.02-.13-1.17-.62-.15-.49.13-1.02.62-1.17 3.63-1.1 9.61-.89 13.43 1.38.44.26.59.84.33 1.28-.26.44-.84.59-1.28.33z"/>
+              </svg>
+            </div>
+            <div class="spotify-meta">
+              <div class="spotify-title">Flow Theme (Binaural Beats)</div>
+              <div class="spotify-artist">DonutSMP Hunting Beats</div>
+              <div class="spotify-progress-bar"><div class="spotify-progress-fill"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Notification Toasts Layer -->
+        <div class="flow-notifications-container" id="flowNotifications"></div>
+
+        <!-- Panels Container -->
+        <div class="flow-panels-container" id="flowPanelsContainer">
+          ${this.categories.map((cat, idx) => this.renderCategoryPanel(cat, idx)).join('')}
+        </div>
+
+        <!-- Floating Bottom GUI Bar (CONFIGS + SEARCH BAR) -->
+        <div class="flow-gui-bottom-bar">
+          <button class="flow-gui-btn flow-btn-configs" id="btnGuiConfigs" title="Manage Config Profiles">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
+            <span>CONFIGS</span>
+          </button>
+          
+          <div class="flow-gui-search-box" id="guiSearchBox">
+            <svg class="search-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <input type="text" id="guiSearchInput" placeholder="SEARCH MODULES..." value="${this.searchQuery}" spellcheck="false" autocomplete="off" />
+            <button class="search-clear-btn" id="guiSearchClear" style="display: ${this.searchQuery ? 'block' : 'none'};">&times;</button>
+          </div>
+
+          <button class="flow-gui-btn flow-btn-reset" id="btnGuiReset" title="Reset Panels Grid">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"></polyline><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path></svg>
+            <span>RESET LAYOUT</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Config Presets Modal -->
+      <div class="flow-modal-backdrop" id="configModal" style="display: none;">
+        <div class="flow-modal-card">
+          <div class="modal-header">
+            <h3>Flow Client Configurations</h3>
+            <button class="modal-close" id="configModalClose">&times;</button>
+          </div>
+          <div class="modal-body">
+            <p class="modal-subtitle">Load official tailored configs optimized for specific playstyles & servers.</p>
+            <div class="config-presets-grid">
+              <div class="config-preset-item" data-preset="donutsmp">
+                <div class="preset-icon">🍩</div>
+                <div class="preset-info">
+                  <h4>DonutSMP Base Hunter</h4>
+                  <p>Sus Chunk Finder optimized, Stash Finder, Staff Detector & Safe AutoTotem.</p>
+                </div>
+                <button class="preset-load-btn">LOAD</button>
+              </div>
+              <div class="config-preset-item" data-preset="ghost">
+                <div class="preset-icon">👻</div>
+                <div class="preset-info">
+                  <h4>Undetected Ghost PVP</h4>
+                  <p>Legit AimAssist, 14 CPS randomized jitter, SafeWalk & subtle ESP.</p>
+                </div>
+                <button class="preset-load-btn">LOAD</button>
+              </div>
+              <div class="config-preset-item" data-preset="blatant">
+                <div class="preset-icon">⚔️</div>
+                <div class="preset-info">
+                  <h4>Blatant Crystal & Anchor</h4>
+                  <p>0-delay AutoCrystal, AutoAnchor, AutoDoubleHand & Freecam.</p>
+                </div>
+                <button class="preset-load-btn">LOAD</button>
+              </div>
+              <div class="config-preset-item" data-preset="default">
+                <div class="preset-icon">✨</div>
+                <div class="preset-info">
+                  <h4>Flow Default Profile</h4>
+                  <p>Balanced configuration with essential render and utility modules.</p>
+                </div>
+                <button class="preset-load-btn">LOAD</button>
+              </div>
+            </div>
+            
+            <div class="config-actions-row">
+              <button class="config-action-btn" id="btnExportConfig">Export JSON Config</button>
+              <button class="config-action-btn" id="btnImportConfig">Import JSON Config</button>
+              <input type="file" id="configFileInput" accept=".json" style="display: none;" />
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+
+    this.bindEvents();
+  }
+
+  renderCategoryPanel(category, idx) {
+    const defaultX = 24 + idx * 190;
+    const defaultY = 24;
+    const pos = this.panelPositions[category.id] || { x: defaultX, y: defaultY };
+
+    const catModules = this.modules.filter(m => {
+      if (m.category !== category.id) return false;
+      if (!this.searchQuery) return true;
+      const q = this.searchQuery.toLowerCase();
+      return m.name.toLowerCase().includes(q) || m.description.toLowerCase().includes(q);
+    });
+
+    return `
+      <div class="flow-category-panel" id="panel-${category.id}" style="left: ${pos.x}px; top: ${pos.y}px;" data-category="${category.id}">
+        <!-- Header (Drag Handle) -->
+        <div class="panel-header" data-drag-handle="true">
+          <span class="panel-title">${category.name.toUpperCase()}</span>
+          <span class="panel-count">${catModules.length}</span>
+        </div>
+
+        <!-- Modules List -->
+        <div class="panel-modules-list">
+          ${catModules.length === 0 ? `
+            <div class="panel-empty-search">No matches</div>
+          ` : catModules.map(mod => this.renderModuleButton(mod)).join('')}
+        </div>
+      </div>
+    `;
+  }
+
+  renderModuleButton(mod) {
+    const isBinding = this.activeBindingModule === mod.key;
+    const bindLabel = isBinding ? '[ Press Key... ]' : (mod.keybind !== 'NONE' ? `[ ${mod.keybind} ]` : '[ NONE ]');
+
+    return `
+      <div class="flow-module-wrapper ${mod.expanded ? 'is-expanded' : ''}" data-module-key="${mod.key}">
+        <div class="flow-module-button ${mod.enabled ? 'is-enabled' : ''} ${mod.highlight ? 'is-highlighted' : ''}" 
+             data-action="toggle-module" 
+             title="${mod.description} (Left click to toggle, Right click for settings)">
+          <div class="module-btn-content">
+            <span class="module-name">${mod.name.toUpperCase()}</span>
+            ${mod.settings && mod.settings.length > 0 ? `
+              <span class="module-expand-indicator ${mod.expanded ? 'rotated' : ''}">▸</span>
+            ` : ''}
+          </div>
+        </div>
+
+        <!-- Subsettings Accordion (Right Click Dropdown) -->
+        ${mod.expanded ? `
+          <div class="flow-module-dropdown">
+            <!-- Keybind Selector Row -->
+            <div class="setting-row setting-keybind" data-action="bind-key" data-module-key="${mod.key}">
+              <span class="setting-label">KEYBIND</span>
+              <span class="setting-bind-badge ${isBinding ? 'is-listening' : ''}">${bindLabel}</span>
+            </div>
+
+            <!-- Settings list -->
+            ${mod.settings ? mod.settings.map((s, sIdx) => this.renderSettingComponent(mod, s, sIdx)).join('') : ''}
+          </div>
+        ` : ''}
+      </div>
+    `;
+  }
+
+  renderSettingComponent(mod, setting, sIdx) {
+    if (setting.type === 'boolean') {
+      return `
+        <div class="setting-row setting-boolean" data-action="toggle-setting" data-module-key="${mod.key}" data-setting-idx="${sIdx}">
+          <span class="setting-label">${setting.name}</span>
+          <div class="flow-toggle-switch ${setting.value ? 'is-active' : ''}">
+            <div class="toggle-knob"></div>
+          </div>
+        </div>
+      `;
+    } else if (setting.type === 'number') {
+      const pct = Math.min(100, Math.max(0, ((setting.value - setting.min) / (setting.max - setting.min)) * 100));
+      return `
+        <div class="setting-row setting-number" data-module-key="${mod.key}" data-setting-idx="${sIdx}">
+          <div class="setting-header-row">
+            <span class="setting-label">${setting.name}</span>
+            <span class="setting-num-val">§b${typeof setting.value === 'number' ? setting.value.toFixed(1) : setting.value}</span>
+          </div>
+          <div class="flow-slider-container">
+            <input type="range" class="flow-slider-range" 
+                   min="${setting.min}" max="${setting.max}" step="${setting.step || 0.1}" 
+                   value="${setting.value}" 
+                   data-module-key="${mod.key}" data-setting-idx="${sIdx}" />
+            <div class="slider-track-fill" style="width: ${pct}%"></div>
+          </div>
+        </div>
+      `;
+    } else if (setting.type === 'color') {
+      const hexStr = typeof setting.value === 'number' 
+        ? '#' + (setting.value & 0xFFFFFF).toString(16).padStart(6, '0') 
+        : (setting.value.startsWith('0x') ? '#' + setting.value.replace('0x', '').slice(-6) : setting.value);
+      return `
+        <div class="setting-row setting-color" data-action="cycle-color" data-module-key="${mod.key}" data-setting-idx="${sIdx}">
+          <span class="setting-label">${setting.name}</span>
+          <div class="color-swatch-box" style="background-color: ${hexStr};"></div>
+        </div>
+      `;
+    } else if (setting.type === 'string') {
+      return `
+        <div class="setting-row setting-string">
+          <span class="setting-label">${setting.name}</span>
+          <input type="text" class="flow-setting-input" 
+                 value="${setting.value}" 
+                 data-module-key="${mod.key}" data-setting-idx="${sIdx}" spellcheck="false" />
+        </div>
+      `;
+    } else if (setting.type === 'button') {
+      return `
+        <div class="setting-row setting-button">
+          <button class="flow-setting-action-btn" data-action="click-setting-button" data-module-key="${mod.key}" data-setting-name="${setting.name}">
+            ${setting.name.toUpperCase()}
+          </button>
+        </div>
+      `;
+    }
+    return '';
+  }
+
+  bindEvents() {
+    const workspace = this.container.querySelector('#flowGuiWorkspace');
+
+    // Module Left/Right click
+    workspace.addEventListener('mousedown', (e) => {
+      const moduleBtn = e.target.closest('[data-action="toggle-module"]');
+      if (moduleBtn) {
+        const wrapper = moduleBtn.closest('.flow-module-wrapper');
+        const modKey = wrapper.getAttribute('data-module-key');
+        const mod = this.modules.find(m => m.key === modKey);
+        if (!mod) return;
+
+        if (e.button === 0) { // Left Click: Toggle Module
+          mod.enabled = !mod.enabled;
+          if (window.flowAudio) window.flowAudio.playToggle(mod.enabled);
+          this.showToast(mod.name, mod.enabled ? 'Enabled' : 'Disabled', mod.enabled ? 0x10B981 : 0xEF4444);
+          this.render();
+          this.updateActiveHUD();
+        } else if (e.button === 2) { // Right Click: Expand Settings
+          e.preventDefault();
+          mod.expanded = !mod.expanded;
+          if (window.flowAudio) window.flowAudio.playClick(650, 0.04);
+          this.render();
+        }
+        return;
+      }
+
+      // Setting Boolean Toggle
+      const boolRow = e.target.closest('[data-action="toggle-setting"]');
+      if (boolRow && e.button === 0) {
+        const modKey = boolRow.getAttribute('data-module-key');
+        const sIdx = parseInt(boolRow.getAttribute('data-setting-idx'), 10);
+        const mod = this.modules.find(m => m.key === modKey);
+        if (mod && mod.settings && mod.settings[sIdx]) {
+          mod.settings[sIdx].value = !mod.settings[sIdx].value;
+          if (window.flowAudio) window.flowAudio.playClick(720, 0.03);
+          this.render();
+        }
+        return;
+      }
+
+      // Keybind bind click
+      const keybindRow = e.target.closest('[data-action="bind-key"]');
+      if (keybindRow && e.button === 0) {
+        const modKey = keybindRow.getAttribute('data-module-key');
+        this.activeBindingModule = this.activeBindingModule === modKey ? null : modKey;
+        if (window.flowAudio) window.flowAudio.playClick(850, 0.05);
+        this.render();
+        return;
+      }
+
+      // Setting Color Cycle
+      const colorRow = e.target.closest('[data-action="cycle-color"]');
+      if (colorRow && e.button === 0) {
+        const modKey = colorRow.getAttribute('data-module-key');
+        const sIdx = parseInt(colorRow.getAttribute('data-setting-idx'), 10);
+        const mod = this.modules.find(m => m.key === modKey);
+        if (mod && mod.settings && mod.settings[sIdx]) {
+          const palette = [0x38BDF8, 0xF472B6, 0x10B981, 0xFBBF24, 0xA855F7, 0xEF4444, 0xFFFFFF];
+          const cur = mod.settings[sIdx].value;
+          const next = palette[(palette.indexOf(cur) + 1) % palette.length] || palette[0];
+          mod.settings[sIdx].value = next;
+          if (window.flowAudio) window.flowAudio.playClick(800, 0.03);
+          this.render();
+        }
+        return;
+      }
+
+      // Setting Button Click
+      const settingBtn = e.target.closest('[data-action="click-setting-button"]');
+      if (settingBtn && e.button === 0) {
+        const btnName = settingBtn.getAttribute('data-setting-name');
+        if (window.flowAudio) window.flowAudio.playClick(900, 0.04);
+        this.showToast('Config Manager', `Executed: ${btnName}`, 0x38BDF8);
+        return;
+      }
+
+      // Panel Header Drag start
+      const header = e.target.closest('[data-drag-handle="true"]');
+      if (header && e.button === 0) {
+        const panel = header.closest('.flow-category-panel');
+        this.draggedPanel = panel;
+        const rect = panel.getBoundingClientRect();
+        this.dragOffset.x = e.clientX - rect.left;
+        this.dragOffset.y = e.clientY - rect.top;
+        panel.classList.add('is-dragging');
+      }
+    });
+
+    // Prevent default context menu on GUI workspace
+    workspace.addEventListener('contextmenu', (e) => {
+      if (e.target.closest('.flow-category-panel') || e.target.closest('.flow-gui-bottom-bar')) {
+        e.preventDefault();
+      }
+    });
+
+    // Slider inputs
+    workspace.addEventListener('input', (e) => {
+      if (e.target.classList.contains('flow-slider-range')) {
+        const modKey = e.target.getAttribute('data-module-key');
+        const sIdx = parseInt(e.target.getAttribute('data-setting-idx'), 10);
+        const val = parseFloat(e.target.value);
+        const mod = this.modules.find(m => m.key === modKey);
+        if (mod && mod.settings && mod.settings[sIdx]) {
+          mod.settings[sIdx].value = val;
+          const container = e.target.closest('.setting-number');
+          const valDisplay = container.querySelector('.setting-num-val');
+          const fill = container.querySelector('.slider-track-fill');
+          if (valDisplay) valDisplay.textContent = `§b${val.toFixed(1)}`;
+          if (fill) {
+            const pct = Math.min(100, Math.max(0, ((val - mod.settings[sIdx].min) / (mod.settings[sIdx].max - mod.settings[sIdx].min)) * 100));
+            fill.style.width = `${pct}%`;
+          }
+        }
+      } else if (e.target.classList.contains('flow-setting-input')) {
+        const modKey = e.target.getAttribute('data-module-key');
+        const sIdx = parseInt(e.target.getAttribute('data-setting-idx'), 10);
+        const mod = this.modules.find(m => m.key === modKey);
+        if (mod && mod.settings && mod.settings[sIdx]) {
+          mod.settings[sIdx].value = e.target.value;
+        }
+      }
+    });
+
+    // Search bar
+    const searchInput = workspace.querySelector('#guiSearchInput');
+    const searchClear = workspace.querySelector('#guiSearchClear');
+    if (searchInput) {
+      searchInput.addEventListener('input', (e) => {
+        this.searchQuery = e.target.value;
+        if (searchClear) searchClear.style.display = this.searchQuery ? 'block' : 'none';
+        this.render();
+      });
+      searchInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          this.searchQuery = '';
+          searchInput.value = '';
+          this.render();
+        }
+      });
+    }
+
+    if (searchClear) {
+      searchClear.addEventListener('click', () => {
+        this.searchQuery = '';
+        if (searchInput) searchInput.value = '';
+        this.render();
+      });
+    }
+
+    // Configs button
+    const btnConfigs = workspace.querySelector('#btnGuiConfigs');
+    const configModal = workspace.querySelector('#configModal');
+    const configModalClose = workspace.querySelector('#configModalClose');
+
+    if (btnConfigs && configModal) {
+      btnConfigs.addEventListener('click', () => {
+        configModal.style.display = 'flex';
+        if (window.flowAudio) window.flowAudio.playClick(700, 0.04);
+      });
+    }
+
+    if (configModalClose && configModal) {
+      configModalClose.addEventListener('click', () => {
+        configModal.style.display = 'none';
+      });
+    }
+
+    if (configModal) {
+      configModal.addEventListener('click', (e) => {
+        if (e.target === configModal) configModal.style.display = 'none';
+      });
+
+      // Config Presets click
+      configModal.querySelectorAll('.config-preset-item').forEach(item => {
+        item.addEventListener('click', () => {
+          const presetName = item.getAttribute('data-preset');
+          this.loadPreset(presetName);
+          configModal.style.display = 'none';
+        });
+      });
+
+      // Export / Import
+      const btnExport = configModal.querySelector('#btnExportConfig');
+      const btnImport = configModal.querySelector('#btnImportConfig');
+      const fileInput = configModal.querySelector('#configFileInput');
+
+      if (btnExport) {
+        btnExport.addEventListener('click', () => this.exportConfig());
+      }
+      if (btnImport && fileInput) {
+        btnImport.addEventListener('click', () => fileInput.click());
+        fileInput.addEventListener('change', (e) => this.importConfigFile(e));
+      }
+    }
+
+    // Reset Layout Button
+    const btnReset = workspace.querySelector('#btnGuiReset');
+    if (btnReset) {
+      btnReset.addEventListener('click', () => {
+        this.panelPositions = {};
+        this.render();
+        if (window.flowAudio) window.flowAudio.playClick(600, 0.05);
+        this.showToast('Layout', 'Panels reset to default positions', 0x38BDF8);
+      });
+    }
+  }
+
+  attachGlobalListeners() {
+    // Global Drag Move & Up
+    window.addEventListener('mousemove', (e) => {
+      if (this.draggedPanel) {
+        const workspace = this.container.querySelector('#flowGuiWorkspace');
+        if (!workspace) return;
+        const wsRect = workspace.getBoundingClientRect();
+
+        let newX = e.clientX - wsRect.left - this.dragOffset.x;
+        let newY = e.clientY - wsRect.top - this.dragOffset.y;
+
+        newX = Math.max(10, Math.min(wsRect.width - 180, newX));
+        newY = Math.max(10, Math.min(wsRect.height - 60, newY));
+
+        this.draggedPanel.style.left = `${newX}px`;
+        this.draggedPanel.style.top = `${newY}px`;
+
+        const catId = this.draggedPanel.getAttribute('data-category');
+        if (catId) {
+          this.panelPositions[catId] = { x: newX, y: newY };
+        }
+      }
+    });
+
+    window.addEventListener('mouseup', () => {
+      if (this.draggedPanel) {
+        this.draggedPanel.classList.remove('is-dragging');
+        this.draggedPanel = null;
+      }
+    });
+
+    // Global Key Listener for Keybinds
+    window.addEventListener('keydown', (e) => {
+      if (this.activeBindingModule) {
+        e.preventDefault();
+        const mod = this.modules.find(m => m.key === this.activeBindingModule);
+        if (mod) {
+          if (e.key === 'Escape' || e.key === 'Backspace' || e.key === 'Delete') {
+            mod.keybind = 'NONE';
+          } else {
+            mod.keybind = e.key.toUpperCase();
+          }
+          this.showToast(mod.name, `Bound to [ ${mod.keybind} ]`, 0xFBBF24);
+        }
+        this.activeBindingModule = null;
+        this.render();
+        return;
+      }
+
+      // Check if pressed key toggles any module
+      const pressedKey = e.key.toUpperCase();
+      const matchedMod = this.modules.find(m => m.keybind === pressedKey && m.keybind !== 'NONE');
+      if (matchedMod && document.activeElement.tagName !== 'INPUT') {
+        matchedMod.enabled = !matchedMod.enabled;
+        if (window.flowAudio) window.flowAudio.playToggle(matchedMod.enabled);
+        this.showToast(matchedMod.name, matchedMod.enabled ? 'Enabled' : 'Disabled', matchedMod.enabled ? 0x10B981 : 0xEF4444);
+        this.render();
+        this.updateActiveHUD();
+      }
+    });
+  }
+
+  updateActiveHUD() {
+    const list = this.container.querySelector('#hudArrayList');
+    if (!list) return;
+
+    const enabledMods = this.modules.filter(m => m.enabled);
+    list.innerHTML = enabledMods.map((mod, i) => {
+      const hue = (i * 18 + 195) % 360;
+      return `
+        <div class="hud-module-entry" style="--accent-hue: ${hue};">
+          <span class="hud-module-text">${mod.name}</span>
+        </div>
+      `;
+    }).join('');
+  }
+
+  showToast(title, message, color = 0x38BDF8) {
+    const container = this.container.querySelector('#flowNotifications');
+    if (!container) return;
+
+    const hexColor = typeof color === 'number' ? '#' + (color & 0xFFFFFF).toString(16).padStart(6, '0') : color;
+    const toast = document.createElement('div');
+    toast.className = 'flow-toast-card';
+    toast.style.borderLeftColor = hexColor;
+    toast.innerHTML = `
+      <div class="toast-title" style="color: ${hexColor};">${title}</div>
+      <div class="toast-message">${message}</div>
+    `;
+
+    container.appendChild(toast);
+
+    setTimeout(() => {
+      toast.classList.add('toast-exit');
+      setTimeout(() => toast.remove(), 350);
+    }, 2800);
+  }
+
+  loadPreset(preset) {
+    if (preset === 'donutsmp') {
+      this.modules.forEach(m => {
+        if (['SUSCHUNKFINDER', 'STAFFDETECTOR', 'STASHFINDER', 'STORAGEESP', 'AUTOTOTEM', 'AUTODOUBLEHAND', 'AUTOSPRINT', 'AUTOARMOR', 'FULLBRIGHT', 'NORENDER', 'FLOWPLUS', 'HUD'].includes(m.key)) {
+          m.enabled = true;
+        } else {
+          m.enabled = false;
+        }
+      });
+      this.showToast('Profile Loaded', 'DonutSMP Base Hunter config active', 0x0078FF);
+    } else if (preset === 'ghost') {
+      this.modules.forEach(m => {
+        if (['AIMASSIST', 'AUTOCLICKER', 'SAFEWALK', 'AUTOSPRINT', 'AUTOARMOR', 'PLAYERESP', 'FULLBRIGHT', 'NORENDER', 'FLOWPLUS'].includes(m.key)) {
+          m.enabled = true;
+        } else {
+          m.enabled = false;
+        }
+      });
+      this.showToast('Profile Loaded', 'Undetected Ghost PvP config active', 0x10B981);
+    } else if (preset === 'blatant') {
+      this.modules.forEach(m => {
+        if (['AUTOCRYSTAL', 'AUTOANCHOR', 'AUTODOUBLEHAND', 'AUTOTOTEM', 'FREECAM', 'ELYTRAFLY', 'SCAFFOLD', 'STORAGEESP', 'PLAYERESP', 'FULLBRIGHT', 'FLOWPLUS', 'HUD'].includes(m.key)) {
+          m.enabled = true;
+        } else {
+          m.enabled = false;
+        }
+      });
+      this.showToast('Profile Loaded', 'Blatant Crystal & Anchor config active', 0xEF4444);
+    } else {
+      this.modules = JSON.parse(JSON.stringify(FLOW_MODULES));
+      this.showToast('Profile Loaded', 'Flow Default config restored', 0x38BDF8);
+    }
+
+    if (window.flowAudio) window.flowAudio.playRadarPing();
+    this.render();
+    this.updateActiveHUD();
+  }
+
+  exportConfig() {
+    const configData = {
+      client: 'Flow Client',
+      version: '1.0.0',
+      timestamp: Date.now(),
+      modules: this.modules
+    };
+    const blob = new Blob([JSON.stringify(configData, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `flow-config-${Date.now()}.json`;
+    a.click();
+    URL.revokeObjectURL(url);
+    this.showToast('Config Export', 'Configuration exported to file', 0x10B981);
+  }
+
+  importConfigFile(e) {
+    const file = e.target.files && e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      try {
+        const parsed = JSON.parse(event.target.result);
+        if (parsed.modules && Array.isArray(parsed.modules)) {
+          this.modules = parsed.modules;
+          this.render();
+          this.updateActiveHUD();
+          this.showToast('Config Import', 'Config loaded successfully!', 0x10B981);
+        }
+      } catch (err) {
+        this.showToast('Config Error', 'Invalid JSON config file', 0xEF4444);
+      }
+    };
+    reader.readAsText(file);
+  }
+}
+
+window.FlowClickGUI = FlowClickGUI;
+
+
+// === js/app.js ===
+// Main Application Controller for Flow Client Website
+
+document.addEventListener('DOMContentLoaded', () => {
+  // 1. Initialize Generative Ribbon & Particle Wave Canvas (Hero)
+  const heroCanvas = new FlowHeroCanvas('flowWaveCanvas');
+
+  // 2. Initialize Interactive In-Browser ClickGUI
+  const clickGUI = new FlowClickGUI('clickguiContainer');
+  window.flowClickGUI = clickGUI;
+
+  // 3. Initialize DonutSMP Sus Chunk Finder Radar Simulator
+  const radarSim = new DonutChunkRadarSim('radarCanvas', 'radarInfoPanel');
+  window.radarSim = radarSim;
+
+  // 4. Sensitivity Slider for Radar
+  const radarSensSlider = document.getElementById('radarSensitivitySlider');
+  const radarSensVal = document.getElementById('radarSensitivityVal');
+  if (radarSensSlider && radarSensVal) {
+    radarSensSlider.addEventListener('input', (e) => {
+      const val = parseInt(e.target.value, 10);
+      radarSensVal.textContent = val;
+      radarSim.setSensitivity(val);
+    });
+  }
+
+  // 5. Sound Mute Toggle Button in Header
+  const btnMute = document.getElementById('btnToggleAudio');
+  if (btnMute) {
+    btnMute.addEventListener('click', () => {
+      const isMuted = window.flowAudio.toggleMute();
+      btnMute.classList.toggle('is-muted', isMuted);
+      btnMute.setAttribute('title', isMuted ? 'Unmute UI Audio' : 'Mute UI Audio');
+      btnMute.innerHTML = isMuted ? `
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line></svg>
+      ` : `
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+      `;
+    });
+  }
+
+  // 6. Navigation Smooth Scrolling & Active State
+  const navLinks = document.querySelectorAll('.nav-link, .hero-cta-btn');
+  navLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      const href = link.getAttribute('href');
+      if (href && href.startsWith('#')) {
+        e.preventDefault();
+        const target = document.querySelector(href);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          if (window.flowAudio) window.flowAudio.playClick(750, 0.03);
+        }
+      }
+    });
+  });
+
+  // 7. Right Shift Key Listener to jump straight to the GUI Simulator
+  window.addEventListener('keydown', (e) => {
+    if (e.code === 'ShiftRight') {
+      const guiSec = document.getElementById('clickgui-section');
+      if (guiSec) {
+        guiSec.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        clickGUI.showToast('Flow Client', 'GUI opened with [ Right Shift ] key', 0x38BDF8);
+        if (window.flowAudio) window.flowAudio.playToggle(true);
+      }
+    }
+  });
+
+  // 8. FAQ Accordion
+  const faqItems = document.querySelectorAll('.faq-item');
+  faqItems.forEach(item => {
+    const question = item.querySelector('.faq-question');
+    if (question) {
+      question.addEventListener('click', () => {
+        const isOpen = item.classList.contains('is-open');
+        faqItems.forEach(fi => fi.classList.remove('is-open'));
+        if (!isOpen) {
+          item.classList.add('is-open');
+          if (window.flowAudio) window.flowAudio.playClick(680, 0.03);
+        }
+      });
+    }
+  });
+
+  // 9. Download Button & Notification
+  const downloadBtns = document.querySelectorAll('.btn-download-client');
+  downloadBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      clickGUI.showToast('Download Started', 'Downloading Flow-1.0.0-Fabric-1.21.11.jar', 0x10B981);
+      if (window.flowAudio) window.flowAudio.playRadarPing();
+      
+      // Generate a mock mod jar download trigger
+      const dummyContent = 'Flow Client v1.0.0 for Minecraft 1.21.11 Fabric Loader';
+      const blob = new Blob([dummyContent], { type: 'application/java-archive' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'flow-1.0.0-fabric-1.21.11.jar';
+      a.click();
+      URL.revokeObjectURL(url);
+    });
+  });
+
+  // 10. Copy Launch Args
+  const btnCopyArgs = document.getElementById('btnCopyArgs');
+  if (btnCopyArgs) {
+    btnCopyArgs.addEventListener('click', () => {
+      const argsText = '-XX:+UseG1GC -Xmx4G -Dflow.anticheat=undetected';
+      navigator.clipboard.writeText(argsText);
+      clickGUI.showToast('JVM Flags', 'Copied recommended launch flags to clipboard!', 0x38BDF8);
+      if (window.flowAudio) window.flowAudio.playClick(850, 0.03);
+    });
+  }
+});
+
+
+
+  </script>
+</body>
+</html>
